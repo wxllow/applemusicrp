@@ -10,7 +10,7 @@ A simple menu bar application providing Discord Rich Presence support for Apple 
 
 ## Building
 
-## Requirements
+### Requirements
 
 - rump
 - pypresence
