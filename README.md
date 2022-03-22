@@ -7,7 +7,7 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
 - Light-weight (Uses only 0.5% CPU and less than 40MB of memory on 2020 M1 Macbook Air)
 - Easy to install/use, all you need to do is run the app, no configuration required!
 - Universal Application
-
+- Shows time elapsed (How far into the song you are)
 ## Usage
 
 - Download the latest version (in Releases), double click it, and move the .app "file" to your Applications folder (or wherever you wish.)
@@ -28,9 +28,9 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
 
 ## Planned Features
 
-- Time elapsed
+- ~~Time elapsed~~ **DONE!**
+- ~~Support for pre-10.15 macOS (Should be a simple change of `tell application "Music"` to `tell application "iTunes")~~ **DONE!**
 - Windows support
-- Support for pre-10.15 macOS (Should be a simple change of `tell application "Music"` to `tell application "iTunes")
 - Anything else that is suggested and reasonable :)
 
 ## Acknowledgments
