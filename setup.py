@@ -1,7 +1,7 @@
 from setuptools import setup
 
 APP = ['applemusicrp.py']
-DATA_FILES = [('scripts', ['scripts/getmusicinfo.applescript'])]
+DATA_FILES = [('scripts', ['scripts/'])]
 OPTIONS = {
     'argv_emulation': True,
     'plist': {
