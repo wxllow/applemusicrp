@@ -20,6 +20,7 @@ if platform.system() == 'Darwin':
 elif platform.system() == 'Windows':
     install_dependencies.append('pywin32')
     install_dependencies.append('infi.systray')
+    install_dependencies.append('psutil')
 
 setup(
     app=APP,
