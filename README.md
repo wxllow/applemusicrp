@@ -1,6 +1,6 @@
 # AppleMusicRP - Apple Music Discord Rich Presence
 
-A simple & light-weight menu bar application providing Discord Rich Presence support for Apple Music/iTunes (macOS 10.15 or newer only for now)
+A simple and light-weight menu bar application providing Discord Rich Presence support for Apple Music/iTunes (macOS 10.15 or newer only for now)
 
 ## Usage
 
