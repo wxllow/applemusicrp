@@ -5,6 +5,7 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
 ## Hightlights
 - Light-weight (Uses only 0.4% CPU and less than 40MB of memory on 2020 M1 Macbook Air)
 - Easy to install/use, all you need to do is run the app, no configuration required!
+- Universal Application
 
 ## Usage
 
