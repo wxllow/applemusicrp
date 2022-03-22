@@ -4,14 +4,15 @@ else
 	try
 		tell application "Music"
 			set playerstate to player state
-			
+			set playerposition to player position
+
 			if playerstate is not playing and playerstate is not paused then
 				return "STOPPED"
 			else
 				if playerstate is playing then
-					return "PLAYING\\" & name of current track & "\\" & artist of current track & "\\" & album of current track
+					return "PLAYING\\" & name of current track & "\\" & artist of current track & "\\" & album of current track & "\\" & playerposition
 				else
-					return "PAUSED\\" & name of current track & "\\" & artist of current track & "\\" & album of current track
+					return "PAUSED\\" & name of current track & "\\" & artist of current track & "\\" & album of current track & "\\" & playerposition
 				end if
 			end if
 		end tell

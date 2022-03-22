@@ -5,7 +5,7 @@ DATA_FILES = [('scripts', ['scripts/'])]
 OPTIONS = {
     'argv_emulation': True,
     'plist': {
-        'CFBundleShortVersionString': '1.0.0',
+        'CFBundleShortVersionString': '1.1.0',
         'LSUIElement': True,
     },
     'packages': ['rumps', 'pypresence'],

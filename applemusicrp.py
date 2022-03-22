@@ -3,13 +3,14 @@ import platform
 import time
 import subprocess
 import threading
+from tkinter import E
 import rumps
 import logging
 from pypresence import Presence
 
-client_id = "952320054870020146"  # Put your Client ID in here
+# Client ID (DO NOT USE FOR ANYTHING OTHER THAN THIS APP PLS!)
+client_id = "952320054870020146"
 RPC = Presence(client_id)  # Initialize the Presence client
-reloadable = False
 
 # OS type (Windows, Darwin (macOS), or Linux)
 ostype = platform.system()
@@ -25,6 +26,7 @@ if ostype == 'Darwin':
 else:
     exit(rumps.alert("You need to be using macOS!"))
 
+# Try to connect to RPC
 try:
     RPC.connect()
 except ConnectionRefusedError:
@@ -58,18 +60,15 @@ def rp_updater():
         # info[0] is status (PLAYING, PAUSED, or STOPPED), info[1] is title, info[2] is artist, info[3] is album
         info = get_music_info()
 
-        try:
-            if info[0] == "PLAYING" or info[0] == "PAUSED":
-                RPC.update(large_image="logo",
-                           large_text='Using AppleMusicRP :)',
-                           details=f'{"Playing" if info[0] == "PLAYING" else "Paused"} {info[1]}',
-                           state=f'By {info[2]} on {info[3]}')
-            else:
-                RPC.clear()
-        except Exception as e:
-            reloadable = True
-            logging.error(e)
-            return exit(rumps.alert("Connection to Wumpus has been lost! :(\n AppleMusicRP!"))
+        if info[0] == "PLAYING" or info[0] == "PAUSED":
+            RPC.update(large_image="logo",
+                       large_text='Using AppleMusicRP :)',
+                       details=f'{"Playing" if info[0] == "PLAYING" else "Paused"} {info[1]}',
+                       state=f'By {info[2]} on {info[3]}',
+                       start=(
+                           (time.time()-int(float(info[4]))) if info[0] == "PLAYING" else None))
+        else:
+            RPC.clear()
 
         time.sleep(1)
 
@@ -82,4 +81,4 @@ if __name__ == '__main__':
     x = threading.Thread(target=rp_updater, daemon=True)
     x.start()
     app = App('🎵')
-    app.run()
+    exit(app.run())
