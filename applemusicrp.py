@@ -4,7 +4,6 @@ import time
 import subprocess
 import threading
 from sys import exit
-import rumps
 import logging
 from pypresence import Presence
 
@@ -15,21 +14,28 @@ RPC = Presence(client_id)  # Initialize the Presence client
 # OS type (Windows, Darwin (macOS), or Linux)
 ostype = platform.system()
 
-# Detect if macOS is being used and if so, detect if a macOS version pre-catalina is being used
+# Do initial OS-specific stuff
 if ostype == 'Darwin':
+    import rumps
+
     macos_ver = platform.mac_ver()[0]
 
     if int(platform.mac_ver()[0].split('.')[0]) < 10 and int(platform.mac_ver()[0].split('.')[1]) < 15:
         macos_legacy = True
     else:
         macos_legacy = False
+elif ostype == 'Windows':
+    # Need to find a windows tray library to use and then import it
+    pass
 else:
-    exit(rumps.alert("You need to be using macOS!"))
+    # Needs to be replaced with error dialog
+    exit(logging.error("You need to be using Windows or macOS!"))
 
 # Try to connect to RPC
 try:
     RPC.connect()
 except ConnectionRefusedError:
+    # Needs to be replaced with cross-platform error dialog
     exit(rumps.alert("Could not connect to Discord!"))
 
 
@@ -73,12 +79,15 @@ def rp_updater():
         time.sleep(1)
 
 
-class App(rumps.App):
-    pass
+if ostype == 'Darwin':
+    class App(rumps.App):
+        pass
 
 
 if __name__ == '__main__':
     x = threading.Thread(target=rp_updater, daemon=True)
     x.start()
-    app = App('🎵')
-    exit(app.run())
+
+    if ostype == 'Darwin':
+        app = App('🎵')
+        exit(app.run())
