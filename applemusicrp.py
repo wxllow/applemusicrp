@@ -3,7 +3,7 @@ import platform
 import time
 import subprocess
 import threading
-from tkinter import E
+from sys import exit
 import rumps
 import logging
 from pypresence import Presence
