@@ -1,4 +1,5 @@
 **NOTE: There is support for macOS versions before Catalina in 1.1.0 however it is not tested as I do not have access to an intel mac...**
+
 # AppleMusicRP - Apple Music Discord Rich Presence
 
 A simple and light-weight menu bar application providing Discord Rich Presence support for Apple Music/iTunes! (Currently only for macOS!)
@@ -8,6 +9,7 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
 - Easy to install/use, all you need to do is run the app, no configuration required!
 - Universal Application
 - Shows time elapsed (How far into the song you are)
+
 ## Usage
 
 - Download the latest version (in Releases), double click it, and move the .app "file" to your Applications folder (or wherever you wish.)
@@ -16,21 +18,22 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
 
 ## Building
 
-### Requirements
+### Windows
 
-- rump
-- pypresence
-- py2app
+***Not complete yet...***
+
+`pip install py2exe pywin32 infi.systray `
 
 ### macOS
 
+`python3 -m pip install py2app rumps pypresence`
 `python3 setup.py py2app`
 
 ## Planned Features
 
 - ~~Time elapsed~~ **DONE!**
 - ~~Support for pre-10.15 macOS (Should be a simple change of `tell application "Music"` to `tell application "iTunes")~~ **DONE!**
-- Windows support
+- Windows support [**ALMOST DONE!!**](https://github.com/wxllow/applemusicrp/milestone/1)
 - Anything else that is suggested and reasonable :)
 
 ## Acknowledgments
