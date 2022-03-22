@@ -25,8 +25,13 @@ if ostype == 'Darwin':
     else:
         macos_legacy = False
 elif ostype == 'Windows':
-    # Need to find a windows tray library to use and then import it
-    pass
+    from infi.systray import SysTrayIcon
+    import win32com.client
+    import pythoncom
+    import psutil
+
+    systray = SysTrayIcon(os.path.join(os.path.dirname(os.path.realpath(
+        __file__)), 'assets/icon.ico'), "AppleMusicRP", ())
 else:
     # Needs to be replaced with error dialog
     exit(logging.error("You need to be using Windows or macOS!"))
@@ -53,12 +58,22 @@ def get_music_info():
         p = subprocess.Popen(['osascript', script_loc],
                              stdout=subprocess.PIPE)
 
-        out = p.stdout.read().decode("utf-8").strip().split('\\')
+        return p.stdout.read().decode("utf-8").strip().split('\\')
     else:
-        # Windows support will go here
-        pass
+        if "iTunes.exe" in (p.name() for p in psutil.process_iter()):
+            itunes = win32com.client.Dispatch(
+                "iTunes.Application", pythoncom.CoInitialize())
+        else:
+            return ['STOPPED']
 
-    return out
+        current_track = itunes.CurrentTrack
+        playerstate = itunes.PlayerState
+
+        if current_track is None:
+            return ['STOPPED']
+
+        return [('PAUSED' if playerstate == 0 else 'PLAYING'), current_track.Name, current_track.Artist,
+                current_track.Album, str(itunes.PlayerPosition)]  # Test
 
 
 def rp_updater():
@@ -91,3 +106,5 @@ if __name__ == '__main__':
     if ostype == 'Darwin':
         app = App('🎵')
         exit(app.run())
+    else:
+        exit(systray.start())

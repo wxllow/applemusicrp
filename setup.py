@@ -1,14 +1,14 @@
 from setuptools import setup
 
 APP = ['applemusicrp.py']
-DATA_FILES = [('scripts', ['scripts/'])]
+DATA_FILES = [('scripts', ['scripts/']), ('assets', ['assets/'])]
 OPTIONS = {
     'argv_emulation': True,
     'plist': {
         'CFBundleShortVersionString': '1.1.0',
         'LSUIElement': True,
     },
-    'packages': ['rumps', 'pypresence'],
+    'packages': ['rumps', 'pypresence', 'infi.systray'],
 }
 
 setup(
