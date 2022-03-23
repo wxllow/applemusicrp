@@ -30,7 +30,7 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
 
 ***Not complete yet...***
 
-`pip install py2exe pywin32 infi.systray`
+`pip install pypresence pyinstaller pywin32 psutil infi.systray`
 
 ### macOS
 
