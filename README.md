@@ -1,6 +1,6 @@
 # AppleMusicRP - Apple Music Discord Rich Presence
 
-**NOTE: There is support for macOS versions before Catalina in 1.1.0 however it is not tested as I do not have access to an Intel Mac...**
+**NOTE: Pre-Catalina macOS support should work but is not tested as I do not have access to an Intel Mac...**
 
 A simple and light-weight menu bar application providing Discord Rich Presence support for Apple Music/iTunes on macOS and Windows!
 
