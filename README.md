@@ -29,13 +29,9 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
 
 ### Windows
 
-`pip install pypresence pyinstaller pywin32 infi.systray psutil`
-
-<<<<<<< HEAD
-`.\build.bat`
-=======
 `pip install pypresence pyinstaller pywin32 psutil infi.systray`
->>>>>>> b71326ee062ff1d733865b98983c6dbaf620d2ee
+
+`.\build.bat`
 
 ### macOS
 
