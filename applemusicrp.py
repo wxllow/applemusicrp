@@ -1,3 +1,4 @@
+import sys
 import os
 import platform
 import time
@@ -6,6 +7,14 @@ import threading
 from sys import exit
 import logging
 from pypresence import Presence
+
+
+# Lazy fix for py2exe
+try:
+    __file__
+except NameError:
+    __file__ = sys.argv[0]
+
 
 # Client ID (DO NOT USE FOR ANYTHING OTHER THAN THIS APP PLS!)
 client_id = "952320054870020146"

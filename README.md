@@ -2,46 +2,53 @@
 
 **NOTE: There is support for macOS versions before Catalina in 1.1.0 however it is not tested as I do not have access to an Intel Mac...**
 
-A simple and light-weight menu bar application providing Discord Rich Presence support for Apple Music/iTunes! (Currently only for macOS *but Windows support is almost here*!)
+A simple and light-weight menu bar application providing Discord Rich Presence support for Apple Music/iTunes on macOS and Windows!
 
 ## Highlights
 
 - Light-weight (Uses only 0.5% CPU and less than 40MB of memory on 2020 M1 Macbook Air)
 - Easy to install/use, all you need to do is run the app, no configuration required!
-- Universal Application (on macOS)
+- Universal Application on macOS
+- Windows support
 - Shows time elapsed (How far into the song you are)
 
 ## Usage
 
 ### Windows (Coming soon)
 
-- Download the latest version (in Releases) and run the exe file!
+- Download the latest version (in Releases) and run the exe file! (Make sure Discord is running)
 - That's it! You should now see a 🎵 icon in your system tray :)!
 
 ### macOS
 
 - Download the latest version (in Releases), double click it, and move the .app "file" to your Applications folder (or wherever you wish.)
-- Run it (If you get an "Unidentified Developer" error, alt+click the application and then click Open.)
+- Run it (Make sure Discord is running; If you get an "Unidentified Developer" error, alt+click the application and then click Open.)
 - That's it! You should now see a 🎵 icon in your menu bar :)!
 
 ## Building
 
 ### Windows
 
-***Not complete yet...***
+`pip install pypresence pyinstaller pywin32 infi.systray psutil`
 
-`pip install py2exe pywin32 infi.systray`
+`.\build.bat`
 
 ### macOS
 
+`brew install create-dmg`
+
 `python3 -m pip install py2app rumps pypresence`
-`python3 setup.py py2app`
+
+`chmod +x ./build.sh; build.sh`
 
 ## Planned Features
 
 - ~~Time elapsed~~ **DONE!**
+
 - ~~Support for pre-10.15 macOS (Should be a simple change of `tell application "Music"` to `tell application "iTunes")~~ **DONE!**
-- Windows support [**ALMOST DONE!!**](https://github.com/wxllow/applemusicrp/milestone/1)
+
+- ~~Windows support~~ **DONE!**
+
 - Anything else that is suggested and reasonable :)
 
 ## Acknowledgments
@@ -49,7 +56,11 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
 - [Rumps - Ridiculously Uncomplicated macOS Python Statusbar apps](https://github.com/jaredks/rumps)
 - [pypresence](https://github.com/qwertyquerty/pypresence)
 - [py2app](https://github.com/ronaldoussoren/py2app/)
-
+- [create-dmg](https://github.com/create-dmg/create-dmg)
+- [pywin32](https://github.com/mhammond/pywin32)
+- [py2exe](https://www.py2exe.org/)
+- [infi.systray](https://github.com/Infinidat/infi.systray)
+  
 ## References
 
 - [pypresence docs](https://qwertyquerty.github.io/pypresence/html/index.html)
