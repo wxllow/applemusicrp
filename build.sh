@@ -11,7 +11,7 @@ python3 setup.py py2app --dist-dir "dist/macOS"
 echo "Building complete."
 
 echo "Creating DMG..."
-echo "If the DMG opens up, just close it out."
+echo "If the DMG opens up, just ignore it and wait."
 rm -f dist/AppleMusicRP.dmg
 create-dmg \
     --volname "AppleMusicRP" \
