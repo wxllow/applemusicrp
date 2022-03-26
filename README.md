@@ -39,7 +39,7 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
 
 `python3 -m pip install py2app rumps pypresence`
 
-`chmod +x ./build.sh; build.sh`
+`chmod +x ./build.sh; ./build.sh`
 
 ## Planned Features
 
