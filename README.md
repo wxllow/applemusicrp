@@ -8,7 +8,7 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
 
 - Light-weight (Uses only 0.5% CPU and less than 40MB of memory on 2020 M1 Macbook Air)
 - Easy to install/use, all you need to do is run the app, no configuration required!
-- Universal Application on macOS
+- Apple Silicon support
 - Windows support
 - Shows time elapsed (How far into the song you are)
 
