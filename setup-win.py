@@ -32,17 +32,17 @@ def find_data_files(source, target, patterns):
 
 
 install_dependencies = ['pypresence', 'pywin32',
-                        'infi.systray', 'psutil']
+                        'infi.systray', 'psutil', 'dialite']
 
 setup(
     options={'py2exe': {'compressed': True,
-            'compressed':1,  
-            "dist_dir": "dist/windows/"
-           }},
-    windows = [{
-            "script":"applemusicrp.py",
-            "icon_resources": [(1, "assets/icon.ico")],
-            }],    data_files=find_data_files('.', '', [
+                        'compressed': 1,
+                        "dist_dir": "dist/windows/"
+                        }},
+    windows=[{
+        "script": "applemusicrp.py",
+        "icon_resources": [(1, "assets/icon.ico")],
+    }],    data_files=find_data_files('.', '', [
         'assets/*'
     ]),
     setup_requires=['py2exe', 'setuptools'],

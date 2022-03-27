@@ -29,17 +29,19 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
 
 ### Windows
 
-`pip install pypresence pyinstaller pywin32 psutil infi.systray`
+`pip install wheel pypresence pyinstaller pywin32 psutil infi.systray dialite`
 
 `.\build.bat`
 
 ### macOS
 
+**If you want to build a universal application, make sure you are using [Python 3.9.x universal2 from Python's website](https://www.python.org/downloads/macos/) and not the homebrew version.**
+
 `brew install create-dmg`
 
-`python3 -m pip install py2app rumps pypresence`
+`python3 -m pip install wheel py2app rumps pypresence dialite`
 
-`chmod +x ./build.sh; ./build.sh`
+`chmod +x ./build.zsh; ./build.zsh`
 
 ## Planned Features
 

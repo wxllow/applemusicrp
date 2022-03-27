@@ -7,7 +7,7 @@ import threading
 from sys import exit
 import logging
 from pypresence import Presence
-
+import dialite
 
 # Lazy fix for py2exe
 try:
@@ -42,15 +42,16 @@ elif ostype == 'Windows':
     systray = SysTrayIcon(os.path.join(os.path.dirname(os.path.realpath(
         __file__)), 'assets/icon.ico'), "AppleMusicRP", ())
 else:
-    # Needs to be replaced with error dialog
-    exit(logging.error("You need to be using Windows or macOS!"))
+    dialite.fail("AppleMusicRP", "You need to be using Windows or macOS!")
+    exit(1)
 
 # Try to connect to RPC
 try:
     RPC.connect()
 except ConnectionRefusedError:
     # Needs to be replaced with cross-platform error dialog
-    exit(rumps.alert("Could not connect to Discord!"))
+    dialite.fail("AppleMusicRP", "Could not connect to Discord!")
+    exit(1)
 
 
 def get_music_info():
