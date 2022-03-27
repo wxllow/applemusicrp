@@ -7,6 +7,7 @@ import threading
 from sys import exit
 import logging
 from pypresence import Presence
+import pypresence.exceptions
 import dialite
 
 # Lazy fix for py2exe
@@ -48,7 +49,7 @@ else:
 # Try to connect to RPC
 try:
     RPC.connect()
-except ConnectionRefusedError:
+except (ConnectionRefusedError, pypresence.exceptions.DiscordNotFound, pypresence.exceptions.DiscordError):
     # Needs to be replaced with cross-platform error dialog
     dialite.fail("AppleMusicRP", "Could not connect to Discord!")
     exit(1)
