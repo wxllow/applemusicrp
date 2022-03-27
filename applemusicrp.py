@@ -49,7 +49,7 @@ else:
 # Try to connect to RPC
 try:
     RPC.connect()
-except (ConnectionRefusedError, pypresence.exceptions.DiscordNotFound, pypresence.exceptions.DiscordError):
+except (ConnectionRefusedError, pypresence.exceptions.DiscordNotFound, pypresence.exceptions.DiscordError) as e:
     # Needs to be replaced with cross-platform error dialog
     dialite.fail("AppleMusicRP", "Could not connect to Discord!")
     exit(1)
