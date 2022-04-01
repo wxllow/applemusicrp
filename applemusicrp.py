@@ -98,7 +98,7 @@ def rp_updater():
                        details=f'{"Playing" if info[0] == "PLAYING" else "Paused"} {info[1]}',
                        state=f'By {info[2]} on {info[3]}',
                        start=(
-                           (time.time()-int(float(info[4]))) if info[0] == "PLAYING" else None))
+                           (time.time()-int(float(info[4].split(',')[0]))) if info[0] == "PLAYING" else None))
         else:
             RPC.clear()
 
