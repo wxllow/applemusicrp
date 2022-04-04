@@ -30,7 +30,7 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
 
 ### Windows
 
-`pip install wheel pypresence pyinstaller pywin32 psutil infi.systray dialite`
+`pip install wheel py2exe pypresence pyinstaller pywin32 psutil infi.systray dialite`
 
 `.\build.bat`
 
