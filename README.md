@@ -8,9 +8,20 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
 
 - Light-weight (Uses only 0.5% CPU and less than 40MB of memory on 2020 M1 Macbook Air)
 - Easy to install/use, all you need to do is run the app, no configuration required!
+- Shows time elapsed (How far into the song you are)
+- Status disappears after music is paused for >10 minutes and when no music is playing
 - Universal Application (on macOS)
 - Windows support
-- Shows time elapsed (How far into the song you are)
+
+## Screenshots
+
+### Screenshot while playing
+
+![Screenshot while playing](screenshots/screenshot1.png)
+
+### Screenshot while paused
+
+![Screenshot while paused](screenshots/screenshot2.png)
 
 ## Usage
 
