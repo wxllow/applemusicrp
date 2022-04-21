@@ -21,7 +21,6 @@ except NameError:
 client_id = "952320054870020146"
 RPC = Presence(client_id)  # Initialize the Presence client
 
-# OS type (Windows, Darwin (macOS), or Linux)
 ostype = platform.system()
 
 # Do initial OS-specific stuff
@@ -62,7 +61,6 @@ else:
 try:
     RPC.connect()
 except (ConnectionRefusedError, pypresence.exceptions.DiscordNotFound, pypresence.exceptions.DiscordError) as e:
-    # Needs to be replaced with cross-platform error dialog
     msg = 'Could not connect to Discord!'
     logging.exception(msg)
     dialite.fail("AppleMusicRP", msg)
@@ -71,6 +69,8 @@ except (ConnectionRefusedError, pypresence.exceptions.DiscordNotFound, pypresenc
 
 def get_music_info():
     if ostype == 'Darwin':
+        # Get info using AppleScript and then parse
+
         if macos_legacy == True:
             # Legacy script for pre Catalina macOS
             script_loc = os.path.join(os.path.dirname(os.path.realpath(
@@ -112,6 +112,7 @@ def rp_updater():
             # info[0] is status (PLAYING, PAUSED, or STOPPED), info[1] is title, info[2] is artist, info[3] is album, info[4] is player position
             info = get_music_info()
 
+            # Set status if music is playing or paused and hasn't been paused for >10 mins
             if info[0] == "PLAYING" or info[0] == "PAUSED" and (time.time()+(10*60)) > (last_played+(10*60)):
                 if info[0] == 'PLAYING':
                     last_played = time.time()
