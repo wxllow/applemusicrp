@@ -41,6 +41,9 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
 
 ### Windows
 
+**If you encounter issues, make sure to use Python from the official Python website and not from the Microsoft Store.**
+
+
 `pip install wheel py2exe pypresence pyinstaller pywin32 psutil pystray pillow dialite`
 
 `.\build.bat`
@@ -65,16 +68,6 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
 
 - Anything else that is suggested and reasonable :)
 
-## Acknowledgments
-
-- [Rumps - Ridiculously Uncomplicated macOS Python Statusbar apps](https://github.com/jaredks/rumps)
-- [pypresence](https://github.com/qwertyquerty/pypresence)
-- [py2app](https://github.com/ronaldoussoren/py2app/)
-- [create-dmg](https://github.com/create-dmg/create-dmg)
-- [pywin32](https://github.com/mhammond/pywin32)
-- [py2exe](https://www.py2exe.org/)
-- [infi.systray](https://github.com/Infinidat/infi.systray)
-  
 ## References
 
 - [pypresence docs](https://qwertyquerty.github.io/pypresence/html/index.html)
