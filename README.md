@@ -44,7 +44,7 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
 **If you encounter issues, make sure to use Python from the official Python website and not from the Microsoft Store.**
 
 
-`pip install wheel py2exe pypresence pyinstaller pywin32 psutil pystray pillow dialite`
+`pip install based wheel py2exe pypresence pyinstaller pywin32 psutil pystray pillow dialite`
 
 `.\build.bat`
 
@@ -54,7 +54,7 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
 
 `brew install create-dmg`
 
-`python3 -m pip install wheel py2app rumps pypresence dialite`
+`python3 -m pip install based wheel py2app rumps pypresence dialite`
 
 `chmod +x ./build.zsh; ./build.zsh`
 
