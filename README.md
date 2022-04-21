@@ -27,8 +27,8 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
 
 ### Windows
 
-- Download the latest version (in Releases) and run the installer (or extract the portable version)! 
-- Run the application, which will be located either in `C:\Program Files\AppleMusicRP` or wherever u extracted the portable version. (Make sure Discord is running)
+- Download the latest version (in Releases) and extract! 
+- Run the application (`applemusicrp.exe`)
 - That's it! You should now see a 🎵 icon in your system tray :)!
 
 ### macOS
