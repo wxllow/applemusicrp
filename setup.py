@@ -9,7 +9,7 @@ Usage:
 
 from setuptools import setup
 
-install_dependencies = ['pypresence', 'rumps', 'dialite']
+install_dependencies = ['based', 'pypresence', 'rumps', 'dialite']
 
 APP = ['applemusicrp.py']
 DATA_FILES = [('scripts', ['scripts/']), ('assets', ['assets/'])]
