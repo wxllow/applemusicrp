@@ -1,8 +1,8 @@
 import os
 import glob
-import py2exe
 from setuptools import setup
 import platform
+import py2exe
 
 
 def find_data_files(source, target, patterns):
@@ -32,7 +32,7 @@ def find_data_files(source, target, patterns):
 
 
 install_dependencies = ['pypresence', 'pywin32',
-                        'infi.systray', 'psutil', 'dialite']
+                        'pystray', 'pillow', 'psutil', 'dialite']
 
 setup(
     options={'py2exe': {'compressed': True,

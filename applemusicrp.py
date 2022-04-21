@@ -36,13 +36,23 @@ if ostype == 'Darwin':
         macos_legacy = False
 elif ostype == 'Windows':
     # Windows needs a lot of dependencies :p
-    from infi.systray import SysTrayIcon
+    import pystray
+    from pystray import Icon as icon, Menu as menu, MenuItem as item
+    from PIL import Image
     import win32com.client
     import pythoncom
     import psutil
 
-    systray = SysTrayIcon(os.path.join(os.path.dirname(os.path.realpath(
-        __file__)), 'assets/icon.ico'), "AppleMusicRP", ())
+    def quit():
+        systray.stop()
+        sys.exit(0)
+
+    image = Image.open(os.path.join(os.path.dirname(os.path.realpath(
+        __file__)), 'assets/icon.ico'))
+
+    menu = menu(item('Quit', quit))
+
+    systray = pystray.Icon('AppleMusicRP', image, 'AppleMusicRP', menu=menu)
 else:
     # There isn't iTunes for Linux :(
     dialite.fail("AppleMusicRP", "You need to be using Windows or macOS!")
@@ -110,7 +120,7 @@ def rp_updater():
                 elapsed = int(float(info[4].split(',')[0]))
 
                 RPC.update(large_image="logo",
-                           large_text='Using AppleMusicRP :)',
+                           large_text='Using AppleMusicRP (https://github.com/wxllow/applemusicrp) :)',
                            details=f'{"Playing" if info[0] == "PLAYING" else "Paused"} {info[1]}',
                            small_image='play' if info[0] == "PLAYING" else 'pause',
                            small_text='Playing' if info[0] == "PLAYING" else 'Paused',
@@ -149,4 +159,4 @@ if __name__ == '__main__':
         app = App('🎵')
         exit(app.run())
     else:
-        exit(systray.start())
+        systray.run()
