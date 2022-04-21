@@ -95,18 +95,25 @@ def get_music_info():
 def rp_updater():
     err_count = 0
 
+    last_played = time.time()
+
     while True:
         try:
             # info[0] is status (PLAYING, PAUSED, or STOPPED), info[1] is title, info[2] is artist, info[3] is album, info[4] is player position
             info = get_music_info()
 
-            if info[0] == "PLAYING" or info[0] == "PAUSED":
+            if info[0] == "PLAYING" or info[0] == "PAUSED" and (time.time()+(10*60)) > (last_played+(10*60)):
+                if info[0] == 'PLAYING':
+                    last_played = time.time()
+
                 # .split(',')[0] is an attempt to fix issue #5
                 elapsed = int(float(info[4].split(',')[0]))
 
                 RPC.update(large_image="logo",
                            large_text='Using AppleMusicRP :)',
                            details=f'{"Playing" if info[0] == "PLAYING" else "Paused"} {info[1]}',
+                           small_image='play' if info[0] == "PLAYING" else 'pause',
+                           small_text='Playing' if info[0] == "PLAYING" else 'Paused',
                            state=f'By {info[2]} on {info[3]}',
                            start=(
                                (time.time()-elapsed) if info[0] == "PLAYING" else None))
