@@ -34,7 +34,7 @@ def find_data_files(source, target, patterns):
     return sorted(ret.items())
 
 
-install_dependencies = ['pypresence', 'pywin32',
+install_dependencies = ['based', 'pypresence', 'pywin32',
                         'pystray', 'pillow', 'psutil', 'dialite']
 
 setup(
