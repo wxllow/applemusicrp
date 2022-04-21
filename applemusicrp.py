@@ -44,7 +44,7 @@ elif ostype == 'Windows':
 
     def quit():
         systray.stop()
-        sys.exit(0)
+        exit(0)
 
     image = Image.open(os.path.join(os.path.dirname(os.path.realpath(
         __file__)), 'assets/icon.ico'))
