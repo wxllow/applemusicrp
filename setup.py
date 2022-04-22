@@ -16,7 +16,7 @@ DATA_FILES = [('scripts', ['scripts/']), ('assets', ['assets/'])]
 OPTIONS = {
     'argv_emulation': True,
     'plist': {
-        'CFBundleShortVersionString': '2.2.1',
+        'CFBundleShortVersionString': '3.0.0',
         'LSUIElement': True,
     },
     'packages': install_dependencies
