@@ -160,7 +160,7 @@ def rp_updater():
             if err_count > 1:
                 exit(1)
 
-        time.sleep(1)
+        time.sleep(0.8)
 
 
 if ostype == 'Darwin':
