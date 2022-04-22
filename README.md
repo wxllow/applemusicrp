@@ -8,6 +8,7 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
 
 - Light-weight (Uses only 0.5% CPU and less than 40MB of memory on 2020 M1 Macbook Air)
 - Easy to install/use, all you need to do is run the app, no configuration required!
+- Display album art
 - Shows time elapsed (How far into the song you are)
 - Status disappears after music is paused for >10 minutes and when no music is playing
 - Universal Application (on macOS)
@@ -38,22 +39,21 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
 - That's it! You should now see a 🎵 icon in your menu bar :)!
 
 ## Building
-
-### Windows
-
-`pip install wheel py2exe pypresence pyinstaller pywin32 psutil pystray pillow dialite`
-
-`.\build.bat`
-
 ### macOS
 
 **If you want to build a universal application, make sure you are using [Python 3.9.x universal2 from Python's website](https://www.python.org/downloads/macos/) and not the homebrew version.**
 
 `brew install create-dmg`
 
-`python3 -m pip install wheel py2app rumps pypresence dialite`
+`python3 -m pip install wheel py2app rumps pypresence dialite coverpy`
 
 `chmod +x ./build.zsh; ./build.zsh`
+
+### Windows
+
+`pip install wheel py2exe pypresence pyinstaller pywin32 psutil pystray pillow dialite coverpy`
+
+`.\build.bat`
 
 ## Planned Features
 
