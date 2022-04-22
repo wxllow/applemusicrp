@@ -38,7 +38,6 @@ if ostype == 'Darwin':
         macos_legacy = False
 elif ostype == 'Windows':
     # Windows needs a lot of dependencies :p
-    import pystray
     from pystray import Icon as icon, Menu as menu, MenuItem as item
     from PIL import Image
     import win32com.client
@@ -54,7 +53,7 @@ elif ostype == 'Windows':
 
     menu = menu(item('Quit', quit))
 
-    systray = pystray.Icon('AppleMusicRP', image, 'AppleMusicRP', menu=menu)
+    systray = icon('AppleMusicRP', image, 'AppleMusicRP', menu=menu)
 else:
     # There isn't iTunes for Linux :(
     dialite.fail("AppleMusicRP", "You need to be using Windows or macOS!")
@@ -73,7 +72,6 @@ except (ConnectionRefusedError, pypresence.exceptions.DiscordNotFound, pypresenc
 def get_music_info():
     if ostype == 'Darwin':
         # Get info using AppleScript and then parse
-
         if macos_legacy == True:
             # Legacy script for pre Catalina macOS
             script_loc = os.path.join(os.path.dirname(os.path.realpath(
@@ -95,6 +93,7 @@ def get_music_info():
         else:
             return ['STOPPED']
 
+        # Get info using Windows API
         current_track = itunes.CurrentTrack
         playerstate = itunes.PlayerState
 
