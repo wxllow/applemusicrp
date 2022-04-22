@@ -2,7 +2,7 @@
 
 **NOTE: Pre-Catalina macOS support should work but is not tested as I do not have access to an Intel Mac...**
 
-A simple and light-weight menu bar application providing Discord Rich Presence support for Apple Music/iTunes on macOS and Windows!
+A simple and light-weight menu bar application providing Discord Rich Presence support for Apple Music/iTunes on macOS and Windows, **now with album art**!
 
 ## Highlights
 
