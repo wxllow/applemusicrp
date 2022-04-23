@@ -35,7 +35,7 @@ def find_data_files(source, target, patterns):
 
 
 install_dependencies = ['pypresence', 'pywin32',
-                        'pystray', 'pillow', 'psutil', 'dialite', 'coverpy', 'appdirs']
+                        'pystray', 'pillow', 'psutil', 'dialite', 'coverpy', 'appdirs', 'toml']
 
 setup(
     options={'py2exe': {'compressed': 1,

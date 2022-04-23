@@ -12,6 +12,8 @@ import dialite
 from pystray import Icon as icon, Menu as menu, MenuItem as item
 from PIL import Image
 from utils import get_cover_art_url
+from config import Config
+
 
 # Lazy fix for py2exe
 try:
@@ -22,6 +24,7 @@ except NameError:
 # Client ID (DO NOT USE FOR ANYTHING OTHER THAN THIS APP PLS!)
 client_id = "952320054870020146"
 RPC = Presence(client_id)  # Initialize the Presence client
+config = Config()
 
 ostype = platform.system()
 
@@ -114,7 +117,8 @@ def rp_updater():
                 RPC.update(large_image=artwork or 'logo',
                            large_text='Using AppleMusicRP (https://github.com/wxllow/applemusicrp) :)',
                            details=f'{"Playing" if info[0] == "PLAYING" else "Paused"} {info[1]}',
-                           small_image='play' if info[0] == "PLAYING" else 'pause',
+                           small_image=(('play' if info[0] == "PLAYING" else 'pause') if config.config.get(
+                               'show_play_pause_icon', True) else None),
                            small_text='Playing' if info[0] == "PLAYING" else 'Paused',
                            state=f'By {info[2]} on {info[3]}',
                            start=(
@@ -144,11 +148,21 @@ def quit():
     exit(0)
 
 
+def toggle_playpause_icon():
+    if config.config.get('show_play_pause_icon', True):
+        config.config['show_play_pause_icon'] = False
+    else:
+        config.config['show_play_pause_icon'] = True
+
+    config.save()
+
+
 image = Image.open(os.path.join(os.path.dirname(os.path.realpath(
     __file__)), 'assets/icon.png'))
 
 
-menu = menu(item('Quit', quit))
+menu = menu(item('Toggle play/pause icon', toggle_playpause_icon,
+            checked=lambda item: config.config.get('show_play_pause_icon', True)), item('Quit', quit))
 
 tray = icon('AppleMusicRP', image, 'AppleMusicRP', menu=menu)
 

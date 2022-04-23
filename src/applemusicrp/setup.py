@@ -10,7 +10,7 @@ Usage:
 from setuptools import setup
 
 install_dependencies = ['pypresence',
-                        'pystray', 'dialite', 'coverpy', 'appdirs']
+                        'pystray', 'dialite', 'coverpy', 'appdirs', 'toml']
 
 APP = ['applemusicrp.py']
 DATA_FILES = [('scripts', ['scripts/']), ('assets', ['assets/'])]
