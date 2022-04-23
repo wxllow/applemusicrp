@@ -32,10 +32,7 @@ if ostype == 'Darwin':
 
     macos_ver = platform.mac_ver()[0]
 
-    if int(platform.mac_ver()[0].split('.')[0]) < 10 and int(platform.mac_ver()[0].split('.')[1]) < 15:
-        macos_legacy = True
-    else:
-        macos_legacy = False
+    macos_legacy = bool(int(platform.mac_ver()[0].split('.')[0]) < 10 and int(platform.mac_ver()[0].split('.')[1]) < 15)
 elif ostype == 'Windows':
     # Windows needs a lot of dependencies :p
     from pystray import Icon as icon, Menu as menu, MenuItem as item
