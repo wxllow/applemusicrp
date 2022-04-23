@@ -38,8 +38,7 @@ install_dependencies = ['pypresence', 'pywin32',
                         'pystray', 'pillow', 'psutil', 'dialite', 'coverpy']
 
 setup(
-    options={'py2exe': {'compressed': True,
-                        'compressed': 1,
+    options={'py2exe': {'compressed': 1,
                         "dist_dir": "dist/windows/"
                         }},
     windows=[{
