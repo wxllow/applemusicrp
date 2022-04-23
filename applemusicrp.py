@@ -62,8 +62,8 @@ try:
     RPC.connect()
 except (ConnectionRefusedError, pypresence.exceptions.DiscordNotFound, pypresence.exceptions.DiscordError) as e:
     msg = 'Could not connect to Discord!'
-    logging.exception(msg)
     dialite.fail("AppleMusicRP", msg)
+    logging.exception(msg)
     exit(1)
 
 
@@ -149,13 +149,14 @@ def rp_updater():
         except:
             err_count += 1
 
-            msg = 'An unexpected error has occured while trying to update your Discord status!'
-            logging.exception(msg)
-            dialite.fail("AppleMusicRP", msg)
+            if err_count < 3:
+                msg = 'An unexpected error has occured while trying to update your Discord status!'
+                dialite.fail("AppleMusicRP", msg)
+                logging.exception(msg)
+                time.sleep(1)  # Sleep an extra second
 
-            # Prevent endless loops of errors!
-            if err_count > 1:
-                exit(1)
+            if err_count > 5:
+                exit(0)
 
         time.sleep(0.8)
 
