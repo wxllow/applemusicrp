@@ -72,7 +72,7 @@ except (ConnectionRefusedError, pypresence.exceptions.DiscordNotFound, pypresenc
 def get_music_info():
     if ostype == 'Darwin':
         # Get info using AppleScript and then parse
-        if macos_legacy == True:
+        if macos_legacy:
             # Legacy script for pre Catalina macOS
             script_loc = os.path.join(os.path.dirname(os.path.realpath(
                 __file__)), 'scripts/getmusicinfo-legacy.applescript')
@@ -97,7 +97,7 @@ def get_music_info():
         current_track = itunes.CurrentTrack
         playerstate = itunes.PlayerState
 
-        if current_track is None:
+        if not current_track:
             return ['STOPPED']
 
         return [('PAUSED' if playerstate == 0 else 'PLAYING'), current_track.Name, current_track.Artist,
