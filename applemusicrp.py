@@ -10,7 +10,7 @@ from pypresence import Presence
 import pypresence.exceptions
 import dialite
 import coverpy
-
+import requests.exceptions
 
 # Lazy fix for py2exe
 try:
@@ -107,7 +107,7 @@ def get_cover_art_url(title, artist, album):
         result = cover_py.get_cover(f'{title} {artist} {album}', 1)
 
         return result.artwork(512)
-    except coverpy.exceptions.NoResultsException:
+    except (coverpy.exceptions.NoResultsException, requests.exceptions.HTTPError):
         return
 
 
