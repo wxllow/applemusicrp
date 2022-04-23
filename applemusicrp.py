@@ -32,7 +32,8 @@ if ostype == 'Darwin':
 
     macos_ver = platform.mac_ver()[0]
 
-    macos_legacy = bool(int(platform.mac_ver()[0].split('.')[0]) < 10 and int(platform.mac_ver()[0].split('.')[1]) < 15)
+    macos_legacy = bool(int(platform.mac_ver()[0].split('.')[0]) < 10 and int(
+        platform.mac_ver()[0].split('.')[1]) < 15)
 elif ostype == 'Windows':
     # Windows needs a lot of dependencies :p
     from pystray import Icon as icon, Menu as menu, MenuItem as item
@@ -101,9 +102,9 @@ def get_music_info():
                 current_track.Album, str(itunes.PlayerPosition)]
 
 
-def get_cover_art_url(title, artist):
+def get_cover_art_url(title, artist, album):
     try:
-        result = cover_py.get_cover(f'{title} {artist}', 1)
+        result = cover_py.get_cover(f'{title} {artist} {album}', 1)
 
         return result.artwork(512)
     except coverpy.exceptions.NoResultsException:
@@ -133,7 +134,7 @@ def rp_updater():
 
                 if current_song != (info[0], info[1],):
                     current_song = (info[0], info[1],)
-                    artwork = get_cover_art_url(info[1], info[2])
+                    artwork = get_cover_art_url(info[1], info[2], info[3])
 
                 RPC.update(large_image=artwork or 'logo',
                            large_text='Using AppleMusicRP (https://github.com/wxllow/applemusicrp) :)',
