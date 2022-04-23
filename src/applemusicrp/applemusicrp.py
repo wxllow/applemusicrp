@@ -9,12 +9,9 @@ import logging
 from pypresence import Presence
 import pypresence.exceptions
 import dialite
-import coverpy
-import requests.exceptions
 from pystray import Icon as icon, Menu as menu, MenuItem as item
 from PIL import Image
-import appdirs
-
+from utils import get_cover_art_url
 
 # Lazy fix for py2exe
 try:
@@ -22,11 +19,9 @@ try:
 except NameError:
     __file__ = sys.argv[0]
 
-
 # Client ID (DO NOT USE FOR ANYTHING OTHER THAN THIS APP PLS!)
 client_id = "952320054870020146"
 RPC = Presence(client_id)  # Initialize the Presence client
-cover_py = coverpy.CoverPy()
 
 ostype = platform.system()
 
@@ -89,15 +84,6 @@ def get_music_info():
 
         return [('PAUSED' if playerstate == 0 else 'PLAYING'), current_track.Name, current_track.Artist,
                 current_track.Album, str(itunes.PlayerPosition)]
-
-
-def get_cover_art_url(title, artist, album):
-    try:
-        result = cover_py.get_cover(f'{title} {artist} {album}', 1)
-
-        return result.artwork(512)
-    except (coverpy.exceptions.NoResultsException, requests.exceptions.HTTPError):
-        return
 
 
 def rp_updater():

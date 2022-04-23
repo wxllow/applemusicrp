@@ -13,6 +13,7 @@ fi
 
 echo "Building app..."
 
+cd src/applemusicrp
 python3 setup.py py2app --dist-dir "dist/macOS"
 
 echo "Building complete."
