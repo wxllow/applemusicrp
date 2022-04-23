@@ -11,6 +11,10 @@ import pypresence.exceptions
 import dialite
 import coverpy
 import requests.exceptions
+from pystray import Icon as icon, Menu as menu, MenuItem as item
+from PIL import Image
+import appdirs
+
 
 # Lazy fix for py2exe
 try:
@@ -28,30 +32,15 @@ ostype = platform.system()
 
 # Do initial OS-specific stuff
 if ostype == 'Darwin':
-    import rumps
-
     macos_ver = platform.mac_ver()[0]
 
     macos_legacy = bool(int(platform.mac_ver()[0].split('.')[0]) < 10 and int(
         platform.mac_ver()[0].split('.')[1]) < 15)
 elif ostype == 'Windows':
     # Windows needs a lot of dependencies :p
-    from pystray import Icon as icon, Menu as menu, MenuItem as item
-    from PIL import Image
     import win32com.client
     import pythoncom
     import psutil
-
-    def quit():
-        systray.stop()
-        exit(0)
-
-    image = Image.open(os.path.join(os.path.dirname(os.path.realpath(
-        __file__)), 'assets/icon.ico'))
-
-    menu = menu(item('Quit', quit))
-
-    systray = icon('AppleMusicRP', image, 'AppleMusicRP', menu=menu)
 else:
     # There isn't iTunes for Linux :(
     dialite.fail("AppleMusicRP", "You need to be using Windows or macOS!")
@@ -161,10 +150,21 @@ def rp_updater():
         time.sleep(0.8)
 
 
-if ostype == 'Darwin':
-    # Just needs a quit button, no need to define anything here for now
-    class App(rumps.App):
-        pass
+"""Menu bar/tray"""
+
+
+def quit():
+    tray.stop()
+    exit(0)
+
+
+image = Image.open(os.path.join(os.path.dirname(os.path.realpath(
+    __file__)), 'assets/icon.png'))
+
+
+menu = menu(item('Quit', quit))
+
+tray = icon('AppleMusicRP', image, 'AppleMusicRP', menu=menu)
 
 
 if __name__ == '__main__':
@@ -172,9 +172,5 @@ if __name__ == '__main__':
     x = threading.Thread(target=rp_updater, daemon=True)
     x.start()
 
-    # Tray/menu bar app
-    if ostype == 'Darwin':
-        app = App('🎵')
-        exit(app.run())
-    else:
-        systray.run()
+    # Start menu bar app
+    tray.run()
