@@ -9,7 +9,8 @@ Usage:
 
 from setuptools import setup
 
-install_dependencies = ['pypresence', 'rumps', 'dialite', 'coverpy']
+install_dependencies = ['pypresence',
+                        'pystray', 'dialite', 'coverpy', 'pillow']
 
 APP = ['applemusicrp.py']
 DATA_FILES = [('scripts', ['scripts/']), ('assets', ['assets/'])]

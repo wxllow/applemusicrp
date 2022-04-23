@@ -42,7 +42,7 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
 
 `brew install create-dmg`
 
-`python3 -m pip install wheel py2app rumps pypresence dialite coverpy`
+`python3 -m pip install wheel py2app pystray pillow pypresence dialite coverpy`
 
 `chmod +x ./build.zsh; ./build.zsh`
 
