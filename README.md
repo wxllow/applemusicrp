@@ -52,12 +52,11 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
 
 `.\build.bat`
   
-## References
+## Credits
 
-- [pypresence docs](https://qwertyquerty.github.io/pypresence/html/index.html)
-- [Create a macOS Menu Bar App with Python](https://camillovisini.com/article/create-macos-menu-bar-app-pomodoro/#project-setup)
-- <https://apple.stackexchange.com/questions/406941/applescript-and-music>
-- <https://github.com/matteing/coverpy>
+- [Material Icons](https://fonts.google.com/icons)
+- [Coverpy](https://github.com/matteing/coverpy)
+- [Pypresence](https://qwertyquerty.github.io/pypresence/html/index.html)
 
 ## Notice
 
