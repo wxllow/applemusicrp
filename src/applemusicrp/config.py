@@ -13,6 +13,10 @@ class Config:
         self._loc = os.path.join(
             dirs.user_data_dir, 'config.toml')
 
+        if not os.path.exists(self._loc):
+            with open(self._loc, 'w') as f:
+                pass
+
         self._config = toml.load(self._loc)
 
     @property
