@@ -89,6 +89,26 @@ def get_music_info():
                 current_track.Album, str(itunes.PlayerPosition)]
 
 
+def get_rp(info):
+    status = {}
+
+    # .split(',')[0] is an attempt to fix issue #5
+    elapsed = int(float(info[4].split(',')[0].strip()))
+
+    status = {
+        'large_text': 'Using AppleMusicRP (https://github.com/wxllow/applemusicrp) :)',
+        'details': f'{"Playing" if info[0] == "PLAYING" else "Paused"} {info[1]}',
+        'small_image': (('play' if info[0] == "PLAYING" else 'pause') if config.config.get(
+            'show_play_pause_icon', True) else None),
+        'small_text': ('Playing' if info[0] == "PLAYING" else 'Paused'),
+        'state': f'By {info[2]} on {info[3]}',
+        'start': (
+            (time.time()-elapsed) if info[0] == "PLAYING" else None)
+    }
+
+    return status
+
+
 def rp_updater():
     err_count = 0
 
@@ -102,27 +122,19 @@ def rp_updater():
             # info[0] is status (PLAYING, PAUSED, or STOPPED), info[1] is title, info[2] is artist, info[3] is album, info[4] is player position
             info = get_music_info()
 
-            # Set status if music is playing or paused and hasn't been paused for >10 mins
             if info[0] == "PLAYING" or info[0] == "PAUSED" and (time.time()) < (last_played+(10*60)):
-                if info[0] == 'PLAYING':
-                    last_played = time.time()
+                if current_song != (info[1], info[2]):
+                    artwork = get_cover_art_url(
+                        info[1], info[2], info[3]) or 'logo'
+                    current_song = (info[1], info[2])
 
-                # .split(',')[0] is an attempt to fix issue #5
-                elapsed = int(float(info[4].split(',')[0]))
+                status = get_rp(info)
 
-                if current_song != (info[0], info[1],):
-                    current_song = (info[0], info[1],)
-                    artwork = get_cover_art_url(info[1], info[2], info[3])
+                status['large_image'] = artwork
 
-                RPC.update(large_image=artwork or 'logo',
-                           large_text='Using AppleMusicRP (https://github.com/wxllow/applemusicrp) :)',
-                           details=f'{"Playing" if info[0] == "PLAYING" else "Paused"} {info[1]}',
-                           small_image=(('play' if info[0] == "PLAYING" else 'pause') if config.config.get(
-                               'show_play_pause_icon', True) else None),
-                           small_text='Playing' if info[0] == "PLAYING" else 'Paused',
-                           state=f'By {info[2]} on {info[3]}',
-                           start=(
-                               (time.time()-elapsed) if info[0] == "PLAYING" else None))
+                last_played = time.time()
+
+                RPC.update(**status)
             else:
                 RPC.clear()
         except:
@@ -135,6 +147,7 @@ def rp_updater():
                 time.sleep(1)  # Sleep an extra second
 
             if err_count > 5:
+                logging.exception(msg)
                 exit(0)
 
         time.sleep(0.8)
