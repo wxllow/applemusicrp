@@ -4,11 +4,11 @@
 
 ![Downloads](https://img.shields.io/github/downloads/wxllow/applemusicrp/total) ![GitHub forks](https://img.shields.io/github/forks/wxllow/applemusicrp) ![GitHub stars](https://img.shields.io/github/stars/wxllow/applemusicrp)  ![GitHub contributors](https://img.shields.io/github/contributors/wxllow/applemusicrp) ![License](https://img.shields.io/github/license/wxllow/applemusicrp) 
 
-</div>
-
 A simple and light-weight menu bar application providing Discord Rich Presence support for Apple Music/iTunes on macOS and Windows, **now with album art**!
 
 ![Screenshot](screenshots/screenshot.png)
+
+</div>
 
 ## Highlights
 
