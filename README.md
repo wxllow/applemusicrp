@@ -1,6 +1,6 @@
-# AppleMusicRP - Discord Rich Presence for Apple Music
-
 <div align="center">
+
+# AppleMusicRP - Discord Rich Presence for Apple Music
 
 ![Downloads](https://img.shields.io/github/downloads/wxllow/applemusicrp/total) ![GitHub forks](https://img.shields.io/github/forks/wxllow/applemusicrp) ![GitHub stars](https://img.shields.io/github/stars/wxllow/applemusicrp)  ![GitHub contributors](https://img.shields.io/github/contributors/wxllow/applemusicrp) ![License](https://img.shields.io/github/license/wxllow/applemusicrp) 
 
