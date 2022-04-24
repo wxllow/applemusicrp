@@ -25,6 +25,14 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
 
 ### macOS
 
+#### Homebrew
+ 
+If you have homebrew installed, use this command to install AppleMusicRP:
+
+`brew install wxllow/based/<formula>`
+
+#### Manually
+
 - Download the latest version (in Releases), double click it, and move the .app "file" to your Applications folder (or wherever you wish.)
 - Run it (Make sure Discord is running; If you get an "Unidentified Developer" error, alt+click the application and then click Open.)
 - That's it! You should now see a 🎵 icon in your menu bar :)!
