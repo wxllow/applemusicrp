@@ -1,60 +1,56 @@
-# AppleMusicRP - Apple Music Discord Rich Presence
+# AppleMusicRP - Discord Rich Presence for Apple Music
 
 A simple and light-weight menu bar application providing Discord Rich Presence support for Apple Music/iTunes on macOS and Windows, **now with album art**!
 
+![Screenshot](screenshots/screenshot.png)
+
 ## Highlights
 
-- Light-weight
-- Easy to use, all you need to do is run the app, no configuration required!
+- Easy to use
 - Fetches and displays album artwork
 - Shows time elapsed (How far into the song you are)
 - Status disappears after music is paused for >10 minutes and when no music is playing
 - Universal Application (on macOS)
 
-## Screenshots
-
-### Screenshot while playing
-
-![Screenshot while playing](screenshots/screenshot1.png)
-
-### Screenshot while paused
-
-![Screenshot while paused](screenshots/screenshot2.png)
-
-## Usage
+## Download
 
 ### macOS
-
-#### Homebrew
  
-If you have homebrew installed, use this command to install AppleMusicRP:
+If you have homebrew installed, you can use this command to install AppleMusicRP:
 
 `brew install wxllow/based/applemusicrp`
 
-#### Manually
-
-- Download the latest version (in Releases), double click it, and move the .app "file" to your Applications folder (or wherever you wish.)
-- Run it (Make sure Discord is running; If you get an "Unidentified Developer" error, alt+click the application and then click Open.)
-- That's it! You should now see a 🎵 icon in your menu bar :)!
+Otherwise, you can just download the latest DMG from the [releases](https://github.com/wxllow/applemusicrp/releases) tab
 
 ### Windows
 
-- Download the latest version (in Releases) and run the installer (or extract the portable version)! 
-- Run the application, which will be located either in `C:\Program Files\AppleMusicRP` or wherever u extracted the portable version. (Make sure Discord is running)
-- That's it! You should now see a 🎵 icon in your system tray :)!
+The latest version is available from the [releases](https://github.com/wxllow/applemusicrp/releases) tab
+
+## Usage
+
+***If you get an "Unidentified Developer" error, alt+click the application and then click Open***
+
+Make sure Discord is running and open the app!
 
 ## Building
+
+***This section is for advanced users who want to build the app themselves!***
+
+***If you are a normal user, ignore this.***
+
 ### macOS
 
-**If you want to build a universal application, make sure you are using [Python 3.9.x universal2 from Python's website](https://www.python.org/downloads/macos/) and not the homebrew version.**
+***If you want to build a universal application, make sure you are using [Python 3 universal2 from Python's website](https://www.python.org/downloads/macos/) and not the homebrew version of Python!***
 
 `brew install create-dmg`
 
 `python3 -m pip install wheel py2app pystray pillow pypresence dialite coverpy appdirs toml`
 
-`chmod +x ./build.zsh; ./build.zsh`
+`./build.zsh`
 
 ### Windows
+
+***Make sure you're using Python from the Python website and not from the Microsoft Store!***
 
 `pip install wheel py2exe pypresence pyinstaller pywin32 psutil pystray pillow dialite coverpy appdirs toml`
 
@@ -65,6 +61,12 @@ If you have homebrew installed, use this command to install AppleMusicRP:
 - [Material Icons](https://fonts.google.com/icons)
 - [Coverpy](https://github.com/matteing/coverpy)
 - [Pypresence](https://qwertyquerty.github.io/pypresence/html/index.html)
+- [Everyone who has made issues/pull requests or has suggested improvements](https://github.com/wxllow/applemusicrp/issues)
+- [And to all the dependencies that make this possible!](https://github.com/wxllow/applemusicrp/network/dependencies)
+
+## License
+
+The code of this project itself is licensed under the [MIT license](LICENSE). The logo and play/pause icons are licensed under the [Apache License 2.0](https://github.com/google/material-design-icons/blob/master/LICENSE). Dependencies used in this project have their respective licenses.
 
 ## Notice
 
