@@ -14,15 +14,20 @@ fi
 echo "Building app..."
 
 cd src/applemusicrp
-python3 setup.py py2app --dist-dir "dist/macOS"
 
-echo "Building complete."
+if python3 setup.py py2app --dist-dir ../../dist/macOS; then
+  echo "Building complete."
 
-echo "Creating DMG..."
-echo "If the DMG open up, just ignore it and wait."
-rm -f dist/AppleMusicRP.dmg
+  cd ../../
+  echo "Creating DMG..."
+  echo "If the DMG open up, just ignore it and wait."
+  rm -f dist/AppleMusicRP.dmg
 
-create-dmg \
-  --volname "AppleMusicRP" \
-  "dist/AppleMusicRP.dmg" \
-  "dist/macOS"
+  create-dmg \
+    --volname "AppleMusicRP" \
+    "dist/AppleMusicRP.dmg" \
+    "dist/macOS"
+else
+  echo "An error occured!"
+  exit 1
+fi

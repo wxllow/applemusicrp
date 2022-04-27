@@ -8,11 +8,20 @@ Usage:
 """
 
 from setuptools import setup
+import os
 
-install_dependencies = ['pypresence',
-                        'pystray', 'dialite', 'coverpy', 'appdirs', 'toml']
+install_dependencies = [
+    'appdirs',
+    'coverpy',
+    'dialite',
+    'pypresence',
+    'pystray',
+    'toml'
+]
 
-APP = ['applemusicrp.py']
+APP = [os.path.join(os.path.dirname(os.path.realpath(
+    __file__)), 'applemusicrp.py')]
+
 DATA_FILES = [('scripts', ['scripts/']), ('assets', ['assets/'])]
 OPTIONS = {
     'argv_emulation': True,
