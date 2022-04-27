@@ -50,9 +50,9 @@ Make sure Discord is running and open the app!
 
 `brew install create-dmg`
 
-`python3 -m pip install wheel py2app pystray pillow pypresence dialite coverpy appdirs toml`
+`python3 -m pip install wheel appdirs coverpy dialite pillow py2app pypresence pystray toml`
 
-`./build.zsh`
+`zsh ./build.zsh`
 
 ### Windows
 
