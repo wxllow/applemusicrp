@@ -1,16 +1,25 @@
 #!/bin/zsh
 
+# Check for python3
+if ! [ -x "$(command -v python3)" ]; then
+  echo 'Error: python3 could not be found'
+  exit 1
+fi
+
 # Check for create-dmg
 if ! [ -x "$(command -v create-dmg)" ]; then
   echo 'Error: create-dmg could not be found. You can install it with "brew install create-dmg"'
   exit 1
 fi
 
-# Check architecture
-if [ "$(uname -m)" = "x86_64" ]; then
-  echo 'Warning: You are using an Intel Mac (or using Rosetta).'
+# Check if using universal2 Python
+pythonplatform=$(python3 -c "import sysconfig; print(sysconfig.get_platform())")
+
+if [[ "$pythonplatform" != *"universal2"* ]]; then
+  echo "Warning: You are not using the universal2 version of Python. Builds will not be Universal."
 fi
 
+# Build app
 echo "Building app..."
 
 cd src/applemusicrp
@@ -18,6 +27,7 @@ cd src/applemusicrp
 if python3 setup.py py2app --dist-dir ../../dist/macOS; then
   echo "Building complete."
 
+  # Create DMG
   cd ../../
   echo "Creating DMG..."
   echo "If the DMG open up, just ignore it and wait."
@@ -28,6 +38,6 @@ if python3 setup.py py2app --dist-dir ../../dist/macOS; then
     "dist/AppleMusicRP.dmg" \
     "dist/macOS"
 else
-  echo "An error occured!"
+  echo "Error: An error occured while building!"
   exit 1
 fi
