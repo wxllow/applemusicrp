@@ -72,11 +72,11 @@ def get_music_info():
         return p.stdout.read().decode("utf-8").strip().split('\\')
     else:
         # Check if iTunes is running
-        if "iTunes.exe" in (p.name() for p in psutil.process_iter()):
-            itunes = win32com.client.Dispatch(
-                "iTunes.Application", pythoncom.CoInitialize())
-        else:
+        if not "iTunes.exe" in (p.name() for p in psutil.process_iter()):
             return ['STOPPED']
+
+        itunes = win32com.client.Dispatch(
+            "iTunes.Application", pythoncom.CoInitialize())
 
         # Get info using Windows API
         current_track = itunes.CurrentTrack
