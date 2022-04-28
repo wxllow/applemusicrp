@@ -54,6 +54,14 @@ except (ConnectionRefusedError, pypresence.exceptions.DiscordNotFound, pypresenc
     exit(1)
 
 
+def windows_process_exists(process_name):
+    output = subprocess.check_output(
+        'TASKLIST', '/FI', 'imagename eq %s' % process_name).decode()
+
+    last_line = output.strip().split('\r\n')[-1]
+    return last_line.lower().startswith(process_name.lower())
+
+
 def get_music_info():
     if ostype == 'Darwin':
         # Get info using AppleScript and then parse
@@ -72,7 +80,7 @@ def get_music_info():
         return p.stdout.read().decode("utf-8").strip().split('\\')
     else:
         # Check if iTunes is running
-        if not "iTunes.exe" in (p.name() for p in psutil.process_iter()):
+        if not windows_process_exists('iTunes.exe'):
             return ['STOPPED']
 
         itunes = win32com.client.Dispatch(
