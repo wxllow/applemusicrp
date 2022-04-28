@@ -96,17 +96,9 @@ def get_music_info():
                 current_track.Album, str(itunes.PlayerPosition)]
 
 
-def get_rp(info):
-    status = {}
-
+def get_rp(info, statuses):
     # .split(',')[0] is an attempt to fix issue #5
     elapsed = int(float(info[4].split(',')[0].strip()))
-
-    statuses = {
-        'large_text': config.config.get('large_text') or 'Using AppleMusicRP (https://github.com/wxllow/applemusicrp) :)',
-        'details': config.config.get('details') or '{song}',
-        'state': config.config.get('state') or 'By {artist} on {album}',
-    }
 
     status = {
         'large_text': statuses['large_text'].format(status="Playing" if info[0] == "PLAYING" else "Paused", state=info[0], song=info[1], artist=info[2], album=info[3]),
@@ -123,6 +115,12 @@ def get_rp(info):
 
 
 def rp_updater():
+    statuses = {
+        'large_text': config.config.get('large_text') or 'Using AppleMusicRP (https://github.com/wxllow/applemusicrp) :)',
+        'details': config.config.get('details') or '{song}',
+        'state': config.config.get('state') or 'By {artist} on {album}',
+    }
+
     err_count = 0
 
     last_played = time.time()
@@ -141,7 +139,7 @@ def rp_updater():
                         info[1], info[2], info[3]) or 'logo'
                     current_song = (info[1], info[2])
 
-                status = get_rp(info)
+                status = get_rp(info, statuses)
 
                 status['large_image'] = artwork
 
