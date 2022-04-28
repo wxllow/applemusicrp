@@ -38,7 +38,6 @@ elif ostype == 'Windows':
     # Windows needs a lot of dependencies :p
     import win32com.client
     import pythoncom
-    import psutil
 else:
     # There isn't iTunes for Linux :(
     dialite.fail("AppleMusicRP", "You need to be using Windows or macOS!")
@@ -103,13 +102,19 @@ def get_rp(info):
     # .split(',')[0] is an attempt to fix issue #5
     elapsed = int(float(info[4].split(',')[0].strip()))
 
+    statuses = {
+        'large_text': config.config.get('large_text') or 'Using AppleMusicRP (https://github.com/wxllow/applemusicrp) :)',
+        'details': config.config.get('details') or '{song}',
+        'state': config.config.get('state') or 'By {artist} on {album}',
+    }
+
     status = {
-        'large_text': 'Using AppleMusicRP (https://github.com/wxllow/applemusicrp) :)',
-        'details': f'{"Playing" if info[0] == "PLAYING" else "Paused"} {info[1]}',
+        'large_text': statuses['large_text'].format(status="Playing" if info[0] == "PLAYING" else "Paused", state=info[0], song=info[1], artist=info[2], album=info[3]),
+        'details': statuses['details'].format(status="Playing" if info[0] == "PLAYING" else "Paused", state=info[0], song=info[1], artist=info[2], album=info[3]),
         'small_image': (('play' if info[0] == "PLAYING" else 'pause') if config.config.get(
             'show_play_pause_icon', True) else None),
         'small_text': ('Playing' if info[0] == "PLAYING" else 'Paused'),
-        'state': f'By {info[2]} on {info[3]}',
+        'state': statuses['state'].format(status="Playing" if info[0] == "PLAYING" else "Paused", state=info[0], song=info[1], artist=info[2], album=info[3]),
         'start': (
             (time.time()-elapsed) if info[0] == "PLAYING" else None)
     }
@@ -183,7 +188,7 @@ image = Image.open(os.path.join(os.path.dirname(os.path.realpath(
 
 
 menu = menu(item('Toggle play/pause icon', toggle_playpause_icon,
-            checked=lambda item: config.config.get('show_play_pause_icon', True)), item('Quit', quit))
+                 checked=lambda item: config.config.get('show_play_pause_icon', True)), item('Quit', quit))
 
 tray = icon('AppleMusicRP', image, 'AppleMusicRP', menu=menu)
 
