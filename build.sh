@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 # Check for python3
 if ! [ -x "$(command -v python3)" ]; then
@@ -15,9 +15,7 @@ fi
 # Check if using universal2 Python
 pythonplatform=$(python3 -c "import sysconfig; print(sysconfig.get_platform())")
 
-if [[ "$pythonplatform" != *"universal2"* ]]; then
-  echo "Warning: You are not using the universal2 version of Python. Builds will not be Universal."
-fi
+[[ "$pythonplatform" != *"universal2"* ]] && echo "Warning: You are not using the universal2 version of Python. Builds will not be Universal."
 
 # Build app
 echo "Building app..."
