@@ -52,7 +52,7 @@ Make sure Discord is running and open the app!
 
 `python3 -m pip install wheel appdirs coverpy dialite pillow py2app pypresence pystray toml`
 
-`zsh ./build.zsh`
+`sh ./build.sh`
 
 ### Windows
 
