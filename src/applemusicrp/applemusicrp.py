@@ -9,11 +9,12 @@ import logging
 from pypresence import Presence
 import pypresence.exceptions
 import dialite
-from pystray import Icon as icon, Menu as menu, MenuItem as item
+from pystray import Icon as icon
+from pystray import Menu as menu
+from pystray import MenuItem as item
 from PIL import Image
 from utils import get_cover_art_url
 from config import Config
-
 
 # Lazy fix for py2exe
 try:
@@ -100,23 +101,29 @@ def get_rp(info, statuses):
     # .split(',')[0] is an attempt to fix issue #5
     elapsed = int(float(info[4].split(',')[0].strip()))
 
-    status = {
-        'large_text': statuses['large_text'].format(status="Playing" if info[0] == "PLAYING" else "Paused", state=info[0], song=info[1], artist=info[2], album=info[3]),
-        'details': statuses['details'].format(status="Playing" if info[0] == "PLAYING" else "Paused", state=info[0], song=info[1], artist=info[2], album=info[3]),
-        'small_image': (('play' if info[0] == "PLAYING" else 'pause') if config.config.get(
-            'show_play_pause_icon', True) else None),
-        'small_text': ('Playing' if info[0] == "PLAYING" else 'Paused'),
-        'state': statuses['state'].format(status="Playing" if info[0] == "PLAYING" else "Paused", state=info[0], song=info[1], artist=info[2], album=info[3]),
-        'start': (
-            (time.time()-elapsed) if info[0] == "PLAYING" else None)
+    formatting_args = {
+        'status': "Playing" if info[0] == "PLAYING" else "Paused",
+        'state': info[0],
+        'song': info[1],
+        'artist': info[2],
+        'album': info[3]
     }
+
+    status = {}
+
+    status['large_text'] = statuses['large_text'].format(**formatting_args)
+    status['details'] = statuses['details'].format(**formatting_args)
+    status['small_image'] = (('play' if info[0] == "PLAYING" else 'pause')
+                             if config.config.get('show_play_pause_icon', True) else None)
+    status['state'] = statuses['state'].format(**formatting_args)
+    status['start'] = ((time.time()-elapsed) if info[0] == "PLAYING" else None)
 
     return status
 
 
 def rp_updater():
     statuses = {
-        'large_text': config.config.get('large_text') or 'Using AppleMusicRP (https://github.com/wxllow/applemusicrp) :)',
+        'large_text': config.config.get('large_text') or 'Using AppleMusicRP (wxllow/applemusicrp) :)',
         'details': config.config.get('details') or '{song}',
         'state': config.config.get('state') or 'By {artist} on {album}',
     }
