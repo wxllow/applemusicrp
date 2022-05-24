@@ -13,7 +13,7 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
 ## Highlights
 
 - Easy to use
-- Fetches and displays album artwork
+- Fetches and displays album artwork from iTunes (This even works for local songs, as long as they're on iTunes and have the right metadata)
 - Shows time elapsed (How far into the song you are)
 - Status disappears after music is paused for >10 minutes and when no music is playing
 - Universal Application (on macOS)
