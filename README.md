@@ -34,9 +34,9 @@ The latest version is available from the [releases](https://github.com/wxllow/ap
 
 ## Usage
 
-***If you get an "Unidentified Developer" error, alt+click the application and then click Open***
-
 Make sure Discord is running and open the app!
+
+***If you get an "Unidentified Developer" error, alt+click the application and then click Open***
 
 ## Building
 
