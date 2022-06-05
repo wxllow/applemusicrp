@@ -6,6 +6,7 @@ import subprocess
 import threading
 from sys import exit
 import logging
+
 from pypresence import Presence
 import pypresence.exceptions
 import dialite
@@ -13,6 +14,7 @@ from pystray import Icon as icon
 from pystray import Menu as menu
 from pystray import MenuItem as item
 from PIL import Image
+
 from utils import get_cover_art_url
 from config import Config
 
@@ -36,7 +38,6 @@ if ostype == 'Darwin':
     macos_legacy = bool(int(platform.mac_ver()[0].split('.')[0]) < 10 and int(
         platform.mac_ver()[0].split('.')[1]) < 15)
 elif ostype == 'Windows':
-    # Windows needs a lot of dependencies :p
     import win32com.client
     import pythoncom
 else:
@@ -49,8 +50,8 @@ try:
     RPC.connect()
 except (ConnectionRefusedError, pypresence.exceptions.DiscordNotFound, pypresence.exceptions.DiscordError) as e:
     msg = 'Could not connect to Discord!'
+    logging.exception(e)
     dialite.fail("AppleMusicRP", msg)
-    logging.exception(msg)
     exit(1)
 
 
@@ -155,17 +156,16 @@ def rp_updater():
                 RPC.update(**status)
             else:
                 RPC.clear()
-        except:
+        except Exception as e:
+            logging.exception(e)
             err_count += 1
 
             if err_count < 3:
                 msg = 'An unexpected error has occured while trying to update your Discord status!'
                 dialite.fail("AppleMusicRP", msg)
-                logging.exception(msg)
                 time.sleep(1)  # Sleep an extra second
 
             if err_count > 5:
-                logging.exception(msg)
                 exit(0)
 
         time.sleep(0.8)
