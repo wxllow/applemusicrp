@@ -57,17 +57,17 @@ except (ConnectionRefusedError, pypresence.exceptions.DiscordNotFound, pypresenc
 
 def windows_process_exists(process_name):
     output = subprocess.check_output(
-        'TASKLIST', '/FI', 'imagename eq %s' % process_name).decode()
+        'TASKLIST', '/FI', f'imagename eq {process_name}').decode()
 
-    last_line = output.strip().split('\r\n')[-1]
-    return last_line.lower().startswith(process_name.lower())
+    last_line = output.strip().split('\r\n')[-1].lower()
+    return last_line.startswith(process_name.lower())
 
 
 def get_music_info():
     if ostype == 'Darwin':
         # Get info using AppleScript and then parse
         if macos_legacy:
-            # Legacy script for pre Catalina macOS
+            # Legacy script for pre-catalina macOS
             script_loc = os.path.join(os.path.dirname(os.path.realpath(
                 __file__)), 'scripts/getmusicinfo-legacy.applescript')
         else:
@@ -98,7 +98,7 @@ def get_music_info():
                 current_track.Album, str(itunes.PlayerPosition)]
 
 
-def get_rp(info, statuses):
+def get_rp(info, status):
     # .split(',')[0] is an attempt to fix issue #5
     elapsed = int(float(info[4].split(',')[0].strip()))
 
@@ -110,13 +110,12 @@ def get_rp(info, statuses):
         'album': info[3]
     }
 
-    status = {}
+    status['large_text'] = status['large_text'].format(**formatting_args)
+    status['details'] = status['details'].format(**formatting_args)
+    status['state'] = status['state'].format(**formatting_args)
 
-    status['large_text'] = statuses['large_text'].format(**formatting_args)
-    status['details'] = statuses['details'].format(**formatting_args)
     status['small_image'] = (('play' if info[0] == "PLAYING" else 'pause')
                              if config.config.get('show_play_pause_icon', True) else None)
-    status['state'] = statuses['state'].format(**formatting_args)
     status['start'] = ((time.time()-elapsed) if info[0] == "PLAYING" else None)
 
     return status
