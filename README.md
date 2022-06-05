@@ -40,28 +40,24 @@ Make sure Discord is running and open the app!
 
 ## Building
 
-***This section is for advanced users who want to build the app themselves!***
-
-***If you are a normal user, ignore this.***
-
 ### macOS
 
 ***If you want to build a universal application, make sure you are using [Python 3 universal2 from Python's website](https://www.python.org/downloads/macos/) and not the homebrew version of Python!***
 
 `brew install create-dmg`
 
-`python3 -m pip install wheel appdirs coverpy dialite pillow py2app pypresence pystray toml`
+`poetry install` (If you don't have poetry, install it using `pip install poetry`)
 
-`sh ./build.sh`
+`./build.sh`
 
 ### Windows
 
 ***Make sure you're using Python from the Python website and not from the Microsoft Store!***
 
-`pip install wheel py2exe pypresence pyinstaller pywin32 psutil pystray pillow dialite coverpy appdirs toml`
+`poetry install` (If you don't have poetry, install it using `pip install poetry`)
 
 `.\build.bat`
-  
+
 ## Credits
 
 - [Material Icons](https://fonts.google.com/icons)
