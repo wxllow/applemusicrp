@@ -7,6 +7,7 @@ import threading
 from sys import exit
 import logging
 
+from rich.logging import RichHandler
 from pypresence import Presence
 import pypresence.exceptions
 import dialite
@@ -23,6 +24,13 @@ try:
     __file__
 except NameError:
     __file__ = sys.argv[0]
+
+# Logging
+logging.basicConfig(
+    level=logging.WARNING, format="%(message)s", datefmt="[%X]", handlers=[RichHandler()]
+)
+
+log = logging.getLogger("rich")
 
 # Client ID (DO NOT USE FOR ANYTHING OTHER THAN THIS APP PLS!)
 client_id = "952320054870020146"
@@ -50,7 +58,7 @@ try:
     RPC.connect()
 except (ConnectionRefusedError, pypresence.exceptions.DiscordNotFound, pypresence.exceptions.DiscordError) as e:
     msg = 'Could not connect to Discord!'
-    logging.exception(e)
+    log.exception(e)
     dialite.fail("AppleMusicRP", msg)
     exit(1)
 
@@ -156,7 +164,7 @@ def rp_updater():
             else:
                 RPC.clear()
         except Exception as e:
-            logging.exception(e)
+            log.exception(e)
             err_count += 1
 
             if err_count < 3:
