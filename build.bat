@@ -1,5 +1,7 @@
 @echo off
 
+poetry install
+
 cd src\applemusicrp
 
 mkdir dist

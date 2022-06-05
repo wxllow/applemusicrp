@@ -17,6 +17,10 @@ pythonplatform=$(python3 -c "import sysconfig; print(sysconfig.get_platform())")
 
 [[ "$pythonplatform" != *"universal2"* ]] && echo "Warning: You are not using the universal2 version of Python. Builds will not be Universal."
 
+echo "Installing dependencies..."
+
+poetry install
+
 # Build app
 echo "Building app..."
 

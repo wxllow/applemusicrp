@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "applemusicrp"
+version = "3.2.0"
+description = "Discord Rich Presence for Apple Music w/ Album Artwork!"
+authors = ["wxllow <willow@wxllow.dev>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.11"
+pystray = "^0.19.3"
+Pillow = "^9.1.1"
+dialite = "^0.5.3"
+coverpy = "^0.0.4"
+appdirs = "^1.4.4"
+pypresence = "^4.2.1"
+toml = "^0.10.2"
+psutil = {version = "^5.9.1", platform = "windows"}
+pywin32 = {version = "^304", platform = "windows"}
+
+[tool.poetry.dev-dependencies]
+wheel = "^0.37.1"
+py2exe = {version = "^0.11.1", platform = "windows"}
+py2app = {version = "^0.28.2", platform = "darwin"}
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
