@@ -106,7 +106,7 @@ def get_music_info():
                 current_track.Album, str(itunes.PlayerPosition)]
 
 
-def get_rp(info, status):
+def get_rp(info, statuses):
     # .split(',')[0] is an attempt to fix issue #5
     elapsed = int(float(info[4].split(',')[0].strip()))
 
@@ -118,9 +118,11 @@ def get_rp(info, status):
         'album': info[3]
     }
 
-    status['large_text'] = status['large_text'].format(**formatting_args)
-    status['details'] = status['details'].format(**formatting_args)
-    status['state'] = status['state'].format(**formatting_args)
+    status = {}
+
+    status['large_text'] = statuses['large_text'].format(**formatting_args)
+    status['details'] = statuses['details'].format(**formatting_args)
+    status['state'] = statuses['state'].format(**formatting_args)
 
     status['small_image'] = (('play' if info[0] == "PLAYING" else 'pause')
                              if config.config.get('show_play_pause_icon', True) else None)
