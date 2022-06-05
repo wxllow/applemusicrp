@@ -24,7 +24,7 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
  
 If you have homebrew installed, you can use this command to install AppleMusicRP:
 
-`brew install wxllow/based/applemusicrp`
+`brew install --no-quarantine wxllow/based/applemusicrp`
 
 Otherwise, you can just download the latest DMG from the [releases](https://github.com/wxllow/applemusicrp/releases) tab
 
