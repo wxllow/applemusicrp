@@ -16,6 +16,7 @@ install_dependencies = [
     'dialite',
     'pypresence',
     'pystray',
+    'rich',
     'toml'
 ]
 
