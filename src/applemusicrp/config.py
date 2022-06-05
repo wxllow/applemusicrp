@@ -1,6 +1,9 @@
 import os
 import toml
+import logging
+
 from appdirs import AppDirs
+import dialite
 
 dirs = AppDirs("AppleMusicRP", "wxllow")
 
@@ -17,7 +20,12 @@ class Config:
             with open(self._loc, 'w') as f:
                 pass
 
-        self._config = toml.load(self._loc)
+        try:
+            self._config = toml.load(self._loc)
+        except Exception as e:
+            logging.error("Config file corrupt, resetting config.")
+            self._config = {}
+            self.save()
 
     @property
     def config(self):

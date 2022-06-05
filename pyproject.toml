@@ -16,6 +16,7 @@ pypresence = "^4.2.1"
 toml = "^0.10.2"
 psutil = {version = "^5.9.1", platform = "windows"}
 pywin32 = {version = "^304", platform = "windows"}
+rich = "^12.4.4"
 
 [tool.poetry.dev-dependencies]
 wheel = "^0.37.1"
