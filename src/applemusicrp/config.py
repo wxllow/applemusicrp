@@ -13,11 +13,10 @@ if not os.path.exists(dirs.user_data_dir):
 
 class Config:
     def __init__(self) -> None:
-        self._loc = os.path.join(
-            dirs.user_data_dir, 'config.toml')
+        self._loc = os.path.join(dirs.user_data_dir, "config.toml")
 
         if not os.path.exists(self._loc):
-            with open(self._loc, 'w') as f:
+            with open(self._loc, "w") as f:
                 pass
 
         try:
@@ -32,5 +31,5 @@ class Config:
         return self._config
 
     def save(self):
-        with open(self._loc, 'w') as f:
+        with open(self._loc, "w") as f:
             toml.dump(self._config, f)

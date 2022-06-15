@@ -11,32 +11,31 @@ from setuptools import setup
 import os
 
 install_dependencies = [
-    'appdirs',
-    'coverpy',
-    'dialite',
-    'pypresence',
-    'pystray',
-    'rich',
-    'toml'
+    "appdirs",
+    "coverpy",
+    "dialite",
+    "pypresence",
+    "pystray",
+    "rich",
+    "toml",
 ]
 
-APP = [os.path.join(os.path.dirname(os.path.realpath(
-    __file__)), 'applemusicrp.py')]
+APP = [os.path.join(os.path.dirname(os.path.realpath(__file__)), "applemusicrp.py")]
 
-DATA_FILES = [('scripts', ['scripts/']), ('assets', ['assets/'])]
+DATA_FILES = [("scripts", ["scripts/"]), ("assets", ["assets/"])]
 OPTIONS = {
-    'argv_emulation': True,
-    'plist': {
-        'CFBundleShortVersionString': '3.2.0',
-        'LSUIElement': True,
+    "argv_emulation": True,
+    "plist": {
+        "CFBundleShortVersionString": "3.2.0",
+        "LSUIElement": True,
     },
-    'packages': install_dependencies
+    "packages": install_dependencies,
 }
 
 setup(
     app=APP,
     data_files=DATA_FILES,
-    options={'py2app': OPTIONS},
-    setup_requires=['py2app'],
-    install_requires=install_dependencies
+    options={"py2app": OPTIONS},
+    setup_requires=["py2app"],
+    install_requires=install_dependencies,
 )

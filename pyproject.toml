@@ -22,7 +22,7 @@ rich = "^12.4.4"
 wheel = "^0.37.1"
 py2exe = {version = "^0.11.1", platform = "windows"}
 py2app = {version = "^0.28.2", platform = "darwin"}
-autopep8 = "^1.6.0"
+black = "^22.3.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

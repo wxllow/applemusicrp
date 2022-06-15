@@ -26,27 +26,35 @@ def find_data_files(source, target, patterns):
         pattern = os.path.join(source, pattern)
         for filename in glob.glob(pattern):
             if os.path.isfile(filename):
-                targetpath = os.path.join(
-                    target, os.path.relpath(filename, source))
+                targetpath = os.path.join(target, os.path.relpath(filename, source))
                 path = os.path.dirname(targetpath)
                 ret.setdefault(path, []).append(filename)
 
     return sorted(ret.items())
 
 
-install_dependencies = ['rich', 'pypresence', 'pywin32',
-                        'pystray', 'pillow', 'psutil', 'dialite', 'coverpy', 'appdirs', 'toml']
+install_dependencies = [
+    "rich",
+    "pypresence",
+    "pywin32",
+    "pystray",
+    "pillow",
+    "psutil",
+    "dialite",
+    "coverpy",
+    "appdirs",
+    "toml",
+]
 
 setup(
-    options={'py2exe': {'compressed': 1,
-                        "dist_dir": "dist/windows/"
-                        }},
-    windows=[{
-        "script": "applemusicrp.py",
-        "icon_resources": [(1, "assets/icon.ico")],
-    }],    data_files=find_data_files('.', '', [
-        'assets/*'
-    ]),
-    setup_requires=['py2exe', 'setuptools'],
-    install_requires=install_dependencies
+    options={"py2exe": {"compressed": 1, "dist_dir": "dist/windows/"}},
+    windows=[
+        {
+            "script": "applemusicrp.py",
+            "icon_resources": [(1, "assets/icon.ico")],
+        }
+    ],
+    data_files=find_data_files(".", "", ["assets/*"]),
+    setup_requires=["py2exe", "setuptools"],
+    install_requires=install_dependencies,
 )
