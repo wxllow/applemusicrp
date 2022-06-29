@@ -18,14 +18,45 @@ pywin32 = {version = "^304", platform = "windows"}
 pystray = {version = "^0.19.3", platform = "windows"}
 Pillow = {version = "^9.1.1", platform = "windows"}
 rumps = {version = "^0.3.0", platform = "darwin"}
-
+setuptools = "^62.6.0"
 
 [tool.poetry.dev-dependencies]
-wheel = "^0.37.1"
-py2exe = {version = "^0.11.1", platform = "windows"}
-py2app = {version = "^0.28.2", platform = "darwin"}
 black = "^22.3.0"
+briefcase = "^0.3.8"
 
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+[tool.briefcase]
+project_name = "applemusicrp"
+bundle = "dev.wxllow.dev"
+version = "3.2.0"
+url = "https://github.com/wxllow/applemusicrp"
+license = "MIT"
+author = 'wxllow'
+author_email = "willow@wxllow.dev"
+
+[tool.briefcase.app.applemusicrp]
+formal_name = "AppleMusicRP"
+description = "Discord Rich Presence for Apple Music w/ Album Artwork!"
+icon = "logos"
+sources = ['src/applemusicrp']
+requires = [
+    'dialite',
+    'coverpy',
+    'appdirs',
+    'pypresence',
+    'toml',
+    'rich',
+    'setuptools'
+]
+
+[tool.briefcase.app.applemusicrp.windows]
+requires = [
+    'psutil',
+    'pywin32',
+    'pystray',
+    'Pillow',
+]
+
+[tool.briefcase.app.applemusicrp.macOS]
+requires = [
+    'rumps',
+]
