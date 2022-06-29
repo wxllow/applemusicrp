@@ -40,23 +40,15 @@ Make sure Discord is running and open the app!
 
 ## Building
 
-### macOS
+***macOS: If you want to build a universal application, make sure you are using [Python 3 universal2 from Python's website](https://www.python.org/downloads/macos/) and not the homebrew version of Python!***
 
-***If you want to build a universal application, make sure you are using [Python 3 universal2 from Python's website](https://www.python.org/downloads/macos/) and not the homebrew version of Python!***
-
-`brew install create-dmg`
+***Windows: Make sure you're using Python from the Python website and not from the Microsoft Store!***
 
 `poetry install` (If you don't have poetry, install it using `pip install poetry`)
 
-`./build.sh`
+`poetry run briefcase build`
 
-### Windows
-
-***Make sure you're using Python from the Python website and not from the Microsoft Store!***
-
-`poetry install` (If you don't have poetry, install it using `pip install poetry`)
-
-`.\build.bat`
+`poetry run briefcase package --no-sign`
 
 ## Credits
 
