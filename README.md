@@ -16,6 +16,7 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
 - Fetches and displays album artwork from iTunes (This even works for local songs, as long as they're on iTunes and have the right metadata)
 - Shows time elapsed (How far into the song you are)
 - Status disappears after music is paused for >10 minutes and when no music is playing
+- [Configurable/Customizable](https://github.com/wxllow/applemusicrp/wiki/Configuration)
 - Universal Application (on macOS)
 
 ## Download
@@ -36,7 +37,7 @@ The latest version is available from the [releases](https://github.com/wxllow/ap
 
 Make sure Discord is running and open the app!
 
-***If you get an "Unidentified Developer" error, alt+click the application and then click Open***
+***If you get an "Unidentified Developer" error, option+click the application and then click Open***
 
 ## Building
 
@@ -55,7 +56,7 @@ Make sure Discord is running and open the app!
 - [Material Icons](https://fonts.google.com/icons)
 - [Coverpy](https://github.com/matteing/coverpy)
 - [Pypresence](https://qwertyquerty.github.io/pypresence/html/index.html)
-- [Everyone who has made issues/pull requests or has suggested improvements](https://github.com/wxllow/applemusicrp/issues)
+- [Everyone who has made issues/pull requests or has suggested improvements](https://github.com/wxllow/applemusicrp/issues?q=)
 - [And to all the dependencies that make this possible!](https://github.com/wxllow/applemusicrp/network/dependencies)
 
 ## License
