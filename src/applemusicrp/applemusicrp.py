@@ -93,11 +93,11 @@ def get_music_info():
 
         return p.stdout.read().decode("utf-8").strip().split("\\")
     else:
-        # Check for running iTunes
-        try:
-            win32com.client.GetActiveObject("Itunes.Application")
-        except:
-            return ["STOPPED"]
+        # # Check for running iTunes
+        # try:
+        #     win32com.client.GetActiveObject("Itunes.Application")
+        # except:
+        #     return ["STOPPED"]
 
         # Check if iTunes is running
         itunes = win32com.client.Dispatch(
