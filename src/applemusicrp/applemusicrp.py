@@ -11,10 +11,6 @@ from rich.logging import RichHandler
 from pypresence import Presence
 import pypresence.exceptions
 import dialite
-from pystray import Icon as icon
-from pystray import Menu as menu
-from pystray import MenuItem as item
-from PIL import Image
 
 from utils import get_cover_art_url
 from config import Config
@@ -44,6 +40,8 @@ ostype = platform.system()
 
 # Do initial OS-specific stuff
 if ostype == "Darwin":
+    import rumps
+    
     macos_ver = platform.mac_ver()[0]
 
     macos_legacy = bool(
@@ -51,8 +49,10 @@ if ostype == "Darwin":
         and int(platform.mac_ver()[0].split(".")[1]) < 15
     )
 elif ostype == "Windows":
-    import win32com.client
-    import pythoncom
+    from pystray import Icon as icon
+    from pystray import Menu as menu
+    from pystray import MenuItem as item
+    from PIL import Image
 else:
     # There isn't iTunes for Linux :(
     dialite.fail("AppleMusicRP", "You need to be using Windows or macOS!")
@@ -209,11 +209,6 @@ def rp_updater():
 """Menu bar/tray"""
 
 
-def quit():
-    tray.stop()
-    exit(0)
-
-
 def toggle_playpause_icon():
     if config.config.get("show_play_pause_icon", True):
         config.config["show_play_pause_icon"] = False
@@ -223,27 +218,44 @@ def toggle_playpause_icon():
     config.save()
 
 
-image = Image.open(
-    os.path.join(os.path.dirname(os.path.realpath(__file__)), "assets/icon.png")
-)
-
-
-menu = menu(
-    item(
-        "Toggle play/pause icon",
-        toggle_playpause_icon,
-        checked=lambda item: config.config.get("show_play_pause_icon", True),
-    ),
-    item("Quit", quit),
-)
-
-tray = icon("AppleMusicRP", image, "AppleMusicRP", menu=menu)
-
-
 if __name__ == "__main__":
     # Launch Rich Presence (RP) updating thread
     x = threading.Thread(target=rp_updater, daemon=True)
     x.start()
-
+    
     # Start menu bar app
-    tray.run()
+
+    if ostype == "Windows":
+        def quit():
+            tray.stop()
+            exit(0)
+            
+        menu = menu(
+            item(
+                "Toggle play/pause icon",
+                toggle_playpause_icon,
+                checked=lambda item: config.config.get("show_play_pause_icon", True),
+            ),
+            item("Quit", quit),
+        )
+
+        image = Image.open(
+        os.path.join(os.path.dirname(os.path.realpath(__file__)), "assets/icon.png"))
+    
+        tray = icon("AppleMusicRP", image, "AppleMusicRP", menu=menu)
+        
+        tray.run()
+    else: 
+        class DarwinStatusBar(rumps.App):
+            def __init__(self):
+                super(DarwinStatusBar, self).__init__("AppleMusicRP")
+                toggle = rumps.MenuItem("Toggle play/pause icon")
+                toggle.state = 1 if config.config.get("show_play_pause_icon", True) else 0
+                self.menu = [toggle] 
+                                
+            @rumps.clicked("Toggle play/pause icon")
+            def onoff(self, sender):
+                toggle_playpause_icon()
+                sender.state = config.config["show_play_pause_icon"]
+                
+        DarwinStatusBar().run()
