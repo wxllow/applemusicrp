@@ -51,9 +51,9 @@ if ostype == "Darwin":
         and int(platform.mac_ver()[0].split(".")[1]) < 15
     )
 elif ostype == "Windows":
-    from pystray import Icon as icon
-    from pystray import Menu as menu
-    from pystray import MenuItem as item
+    from pystray import Icon
+    from pystray import Menu
+    from pystray import MenuItem
     from PIL import Image
 else:
     # There isn't iTunes for Linux :(
@@ -225,20 +225,20 @@ def main():
             tray.stop()
             exit(0)
 
-        menu = menu(
-            item(
+        menu = Menu(
+            MenuItem(
                 "Toggle play/pause icon",
                 toggle_playpause_icon,
                 checked=lambda item: config.config.get("show_play_pause_icon", True),
             ),
-            item("Quit", quit),
+            MenuItem("Quit", quit),
         )
 
         image = Image.open(
             os.path.join(os.path.dirname(os.path.realpath(__file__)), "assets/icon.png")
         )
 
-        tray = icon("AppleMusicRP", image, "AppleMusicRP", menu=menu)
+        tray = Icon("AppleMusicRP", image, "AppleMusicRP", menu=menu)
 
         tray.run()
     else:
