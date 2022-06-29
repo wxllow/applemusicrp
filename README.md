@@ -48,7 +48,7 @@ Make sure Discord is running and open the app!
 
 `poetry run briefcase build`
 
-`poetry run briefcase package --no-sign`
+`poetry run briefcase package --adhoc-sign`
 
 ## Credits
 
