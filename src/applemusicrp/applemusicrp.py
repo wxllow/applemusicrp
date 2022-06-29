@@ -52,6 +52,7 @@ if ostype == "Darwin":
     )
 elif ostype == "Windows":
     import win32com.client
+    import pythoncom
     from pystray import Icon
     from pystray import Menu
     from pystray import MenuItem
