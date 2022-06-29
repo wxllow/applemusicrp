@@ -17,7 +17,7 @@ class Config:
         self._loc = os.path.join(dirs.user_data_dir, "config.toml")
 
         pathlib.Path(os.path.dirname(self._loc)).mkdir(parents=True, exist_ok=True)
-        
+
         if not os.path.exists(self._loc):
             with open(self._loc, "w") as f:
                 pass
@@ -38,6 +38,5 @@ class Config:
         # Atomic save (Prevents corruption of config file on crash/quit)
         with open(f"{self._loc}.tmp", "w") as f:
             toml.dump(self._config, f)
-        
-        shutil.move(f"{self._loc}.tmp", self._loc)      
-        
+
+        shutil.move(f"{self._loc}.tmp", self._loc)
