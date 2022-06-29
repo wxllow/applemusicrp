@@ -12,8 +12,8 @@ from pypresence import Presence
 import pypresence.exceptions
 import dialite
 
-from utils import get_cover_art_url
-from config import Config
+from .utils import get_cover_art_url
+from .config import Config
 
 # Lazy fix for py2exe
 try:
@@ -41,7 +41,7 @@ ostype = platform.system()
 # Do initial OS-specific stuff
 if ostype == "Darwin":
     import rumps
-    
+
     macos_ver = platform.mac_ver()[0]
 
     macos_legacy = bool(
@@ -218,18 +218,19 @@ def toggle_playpause_icon():
     config.save()
 
 
-if __name__ == "__main__":
+def main():
     # Launch Rich Presence (RP) updating thread
     x = threading.Thread(target=rp_updater, daemon=True)
     x.start()
-    
+
     # Start menu bar app
 
     if ostype == "Windows":
+
         def quit():
             tray.stop()
             exit(0)
-            
+
         menu = menu(
             item(
                 "Toggle play/pause icon",
@@ -240,22 +241,30 @@ if __name__ == "__main__":
         )
 
         image = Image.open(
-        os.path.join(os.path.dirname(os.path.realpath(__file__)), "assets/icon.png"))
-    
+            os.path.join(os.path.dirname(os.path.realpath(__file__)), "assets/icon.png")
+        )
+
         tray = icon("AppleMusicRP", image, "AppleMusicRP", menu=menu)
-        
+
         tray.run()
-    else: 
+    else:
+
         class DarwinStatusBar(rumps.App):
             def __init__(self):
                 super(DarwinStatusBar, self).__init__("AppleMusicRP")
                 toggle = rumps.MenuItem("Toggle play/pause icon")
-                toggle.state = 1 if config.config.get("show_play_pause_icon", True) else 0
-                self.menu = [toggle] 
-                                
+                toggle.state = (
+                    1 if config.config.get("show_play_pause_icon", True) else 0
+                )
+                self.menu = [toggle]
+
             @rumps.clicked("Toggle play/pause icon")
             def onoff(self, sender):
                 toggle_playpause_icon()
                 sender.state = config.config["show_play_pause_icon"]
-                
+
         DarwinStatusBar().run()
+
+
+if __name__ == "__main__":
+    main()
