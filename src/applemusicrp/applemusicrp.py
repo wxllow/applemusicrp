@@ -51,6 +51,7 @@ if ostype == "Darwin":
         and int(platform.mac_ver()[0].split(".")[1]) < 15
     )
 elif ostype == "Windows":
+    import win32com.client
     from pystray import Icon
     from pystray import Menu
     from pystray import MenuItem
