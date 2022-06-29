@@ -4,13 +4,13 @@ import platform
 import time
 import subprocess
 import threading
-from sys import exit
 import logging
+from sys import exit
 
-from rich.logging import RichHandler
 from pypresence import Presence
 import pypresence.exceptions
 import dialite
+from rich.logging import RichHandler
 
 from .utils import get_cover_art_url
 from .config import Config
@@ -25,17 +25,19 @@ except NameError:
 logging.basicConfig(
     level=logging.WARNING,
     format="%(message)s",
-    datefmt="[%X]",
     handlers=[RichHandler()],
 )
 
 log = logging.getLogger("rich")
 
-# Client ID (DO NOT USE FOR ANYTHING OTHER THAN THIS APP PLS!)
-client_id = "952320054870020146"
-RPC = Presence(client_id)  # Initialize the Presence client
+# Load configuration
 config = Config()
 
+# Initiate RPC
+client_id = config.config.get("client_id", "952320054870020146")  # Client ID
+RPC = Presence(client_id)  # Initialize the Presence clie
+
+# Possible values: "Darwin", "Windows", "Linux"
 ostype = platform.system()
 
 # Do initial OS-specific stuff
@@ -66,19 +68,9 @@ except (
     pypresence.exceptions.DiscordNotFound,
     pypresence.exceptions.DiscordError,
 ) as e:
-    msg = "Could not connect to Discord!"
     log.exception(e)
-    dialite.fail("AppleMusicRP", msg)
+    dialite.fail("AppleMusicRP", "Could not connect to Discord!")
     exit(1)
-
-
-def windows_process_exists(process_name):
-    output = subprocess.check_output(
-        "TASKLIST", "/FI", f"imagename eq {process_name}"
-    ).decode()
-
-    last_line = output.strip().split("\r\n")[-1].lower()
-    return last_line.startswith(process_name.lower())
 
 
 def get_music_info():
@@ -101,10 +93,13 @@ def get_music_info():
 
         return p.stdout.read().decode("utf-8").strip().split("\\")
     else:
-        # Check if iTunes is running
-        if not windows_process_exists("iTunes.exe"):
+        # Check for running iTunes
+        try:
+            win32com.client.GetActiveObject("Itunes.Application")
+        except:
             return ["STOPPED"]
 
+        # Check if iTunes is running
         itunes = win32com.client.Dispatch(
             "iTunes.Application", pythoncom.CoInitialize()
         )
@@ -126,6 +121,7 @@ def get_music_info():
 
 
 def get_rp(info, statuses):
+    """Get additional Rich Presence data"""
     # .split(',')[0] is an attempt to fix issue #5
     elapsed = int(float(info[4].split(",")[0].strip()))
 
@@ -137,6 +133,7 @@ def get_rp(info, statuses):
         "album": info[3],
     }
 
+    # Format arguments
     status = {}
 
     status["large_text"] = statuses["large_text"].format(**formatting_args)
@@ -154,6 +151,7 @@ def get_rp(info, statuses):
 
 
 def rp_updater():
+    """Main Rich Presence loop"""
     statuses = {
         "large_text": config.config.get("large_text")
         or "Using AppleMusicRP (wxllow/applemusicrp) :)",
@@ -210,10 +208,7 @@ def rp_updater():
 
 
 def toggle_playpause_icon():
-    if config.config.get("show_play_pause_icon", True):
-        config.config["show_play_pause_icon"] = False
-    else:
-        config.config["show_play_pause_icon"] = True
+    config.config["show_play_pause_icon"] = config.config.get("show_play_pause_icon")
 
     config.save()
 
@@ -224,7 +219,6 @@ def main():
     x.start()
 
     # Start menu bar app
-
     if ostype == "Windows":
 
         def quit():
