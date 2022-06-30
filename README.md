@@ -51,6 +51,9 @@ Make sure Discord is running and open the app!
 
 `poetry run briefcase package --adhoc-sign`
 
+## Notes (for devs)
+
+- AppleMusicRP uses two 
 ## Credits
 
 - [Material Icons](https://fonts.google.com/icons)
