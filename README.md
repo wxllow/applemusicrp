@@ -53,7 +53,8 @@ Make sure Discord is running and open the app!
 
 ## Notes (for devs)
 
-- AppleMusicRP uses two 
+- AppleMusicRP uses two libraries for the system tray: pystray for Windows and rumps for macOS. Even though pystray is cross-platform, using it led to issues with compatibility and universal apps (see https://github.com/wxllow/applemusicrp/issues/21 and https://github.com/wxllow/applemusicrp/issues/20)
+
 ## Credits
 
 - [Material Icons](https://fonts.google.com/icons)
