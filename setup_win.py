@@ -1,5 +1,6 @@
 import glob
 import os
+import shutil
 
 import py2exe
 from setuptools import setup
@@ -47,7 +48,7 @@ install_dependencies = [
     "Pillow",
 ]
 
-os.symlink("src/applemusicrp/assets", "assets")
+shutil.copytree("src/applemusicrp/assets", "assets")
 
 setup(
     options={"py2exe": {"compressed": 1, "dist_dir": "dist/windows/"}},
@@ -62,4 +63,4 @@ setup(
     install_requires=install_dependencies,
 )
 
-os.unlink("assets")
+os.rmdir("assets")
