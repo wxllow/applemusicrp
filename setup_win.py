@@ -47,15 +47,19 @@ install_dependencies = [
     "Pillow",
 ]
 
+os.symlink("src/applemusicrp/assets", "assets")
+
 setup(
     options={"py2exe": {"compressed": 1, "dist_dir": "dist/windows/"}},
     windows=[
         {
             "script": "launch.py",
-            "icon_resources": [(1, "src/applemusicrp/assets/icon.ico")],
+            "icon_resources": [(1, "assets/icon.ico")],
         }
     ],
-    data_files=find_data_files(".", "", ["src/applemusicrp/assets/*"]),
+    data_files=find_data_files(".", "", ["assets/*"]),
     setup_requires=["py2exe", "setuptools"],
     install_requires=install_dependencies,
 )
+
+os.unlink("assets")
