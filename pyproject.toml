@@ -19,6 +19,7 @@ pystray = {version = "^0.19.3", platform = "windows"}
 Pillow = {version = "^9.1.1", platform = "windows"}
 rumps = {version = "^0.3.0", platform = "darwin"}
 setuptools = "^62.6.0"
+jpath = {version = "^1.6", platform = "windows"}
 
 [tool.poetry.dev-dependencies]
 black = "^22.3.0"

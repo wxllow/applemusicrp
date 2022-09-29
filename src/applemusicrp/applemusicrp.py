@@ -15,11 +15,13 @@ from rich.logging import RichHandler
 from .config import Config
 from .utils import get_cover_art_url
 
-# Lazy fix for py2exe
-try:
-    __file__
-except NameError:
-    __file__ = sys.argv[0]
+# Get script/app path
+if hasattr(sys, "frozen") and sys.frozen in ("windows_exe", "console_exe"):
+    import jpath
+
+    path = jpath.path(os.path.abspath(sys.executable)).dirname()
+else:
+    path = os.path.dirname(__file__)
 
 # Logging
 logging.basicConfig(
@@ -39,8 +41,6 @@ RPC = Presence(client_id)  # Initialize the Presence clie
 
 # Possible values: "Darwin", "Windows", "Linux"
 ostype = platform.system()
-
-log.warning(__file__)
 
 # Do initial OS-specific stuff
 if ostype == "Darwin":
@@ -81,15 +81,11 @@ def get_music_info():
         if macos_legacy:
             # Legacy script for pre-catalina macOS
             script_loc = os.path.join(
-                os.path.dirname(os.path.realpath(__file__)),
-                "scripts/getmusicinfo-legacy.applescript",
+                path, "scripts", "getmusicinfo-legacy.applescript"
             )
         else:
             # Normal script for macOS
-            script_loc = os.path.join(
-                os.path.dirname(os.path.realpath(__file__)),
-                "scripts/getmusicinfo.applescript",
-            )
+            script_loc = os.path.join(path, "scripts", "getmusicinfo.applescript")
 
         p = subprocess.Popen(["osascript", script_loc], stdout=subprocess.PIPE)
 
@@ -236,9 +232,7 @@ def main():
             MenuItem("Quit", quit),
         )
 
-        image = Image.open(
-            os.path.join(os.path.dirname(os.path.realpath(__file__)), "assets/icon.png")
-        )
+        image = Image.open(os.path.join(path, "assets", "icon.png"))
 
         tray = Icon("AppleMusicRP", image, "AppleMusicRP", menu=menu)
 

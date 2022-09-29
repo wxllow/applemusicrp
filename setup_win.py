@@ -38,6 +38,7 @@ install_dependencies = [
     "dialite",
     "coverpy",
     "appdirs",
+    "jpath",
     "pypresence",
     "toml",
     "rich",
@@ -63,4 +64,4 @@ setup(
     install_requires=install_dependencies,
 )
 
-os.rmdir("assets")
+shutil.rmtree("assets")
