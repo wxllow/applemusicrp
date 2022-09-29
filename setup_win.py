@@ -52,10 +52,10 @@ setup(
     windows=[
         {
             "script": "launch.py",
-            "icon_resources": [(1, "assets/icon.ico")],
+            "icon_resources": [(1, "src/applemusicrp/assets/icon.ico")],
         }
     ],
-    data_files=find_data_files(".", "", ["assets/*"]),
+    data_files=find_data_files(".", "", ["src/applemusicrp/assets/*"]),
     setup_requires=["py2exe", "setuptools"],
     install_requires=install_dependencies,
 )
