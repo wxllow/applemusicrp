@@ -22,7 +22,7 @@ A simple and light-weight menu bar application providing Discord Rich Presence s
 ## Download
 
 ### macOS
- 
+
 If you have homebrew installed, you can use this command to install AppleMusicRP:
 
 `brew install --no-quarantine wxllow/based/applemusicrp`

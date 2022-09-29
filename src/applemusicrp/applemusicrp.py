@@ -1,19 +1,19 @@
-import sys
+import logging
 import os
 import platform
-import time
 import subprocess
+import sys
 import threading
-import logging
+import time
 from sys import exit
 
-from pypresence import Presence
-import pypresence.exceptions
 import dialite
+import pypresence.exceptions
+from pypresence import Presence
 from rich.logging import RichHandler
 
-from .utils import get_cover_art_url
 from .config import Config
+from .utils import get_cover_art_url
 
 # Lazy fix for py2exe
 try:
@@ -51,12 +51,10 @@ if ostype == "Darwin":
         and int(platform.mac_ver()[0].split(".")[1]) < 15
     )
 elif ostype == "Windows":
-    import win32com.client
     import pythoncom
-    from pystray import Icon
-    from pystray import Menu
-    from pystray import MenuItem
+    import win32com.client
     from PIL import Image
+    from pystray import Icon, Menu, MenuItem
 else:
     # There isn't iTunes for Linux :(
     dialite.fail("AppleMusicRP", "You need to be using Windows or macOS!")

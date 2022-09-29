@@ -1,7 +1,6 @@
 import coverpy
 import requests.exceptions
 
-
 cover_py = coverpy.CoverPy()
 
 

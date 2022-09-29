@@ -1,9 +1,9 @@
-import os
-import toml
 import logging
-import shutil
+import os
 import pathlib
+import shutil
 
+import toml
 from appdirs import AppDirs
 
 dirs = AppDirs("AppleMusicRP", "wxllow")
