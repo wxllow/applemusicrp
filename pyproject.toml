@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "applemusicrp"
-version = "3.2.0"
+version = "3.2.1"
 description = "Discord Rich Presence for Apple Music w/ Album Artwork!"
 authors = ["wxllow <willow@wxllow.dev>"]
 license = "MIT"

@@ -47,9 +47,19 @@ Make sure Discord is running and open the app!
 
 `poetry install` (If you don't have poetry, install it using `pip install poetry`)
 
+### macOS
+
 `poetry run briefcase build`
 
 `poetry run briefcase package --adhoc-sign`
+
+Outputs to: `macOS`
+
+### Windows
+
+`poetry run python setup_win.py py2exe`
+
+Outputs to: `dist\windows`
 
 ## Notes (for devs)
 
