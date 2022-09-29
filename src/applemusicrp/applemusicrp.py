@@ -40,6 +40,8 @@ RPC = Presence(client_id)  # Initialize the Presence clie
 # Possible values: "Darwin", "Windows", "Linux"
 ostype = platform.system()
 
+log.warning(__file__)
+
 # Do initial OS-specific stuff
 if ostype == "Darwin":
     import rumps
