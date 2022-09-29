@@ -24,6 +24,7 @@ setuptools = "^62.6.0"
 black = "^22.3.0"
 briefcase = "^0.3.8"
 pre-commit = "^2.20.0"
+py2exe = {version="^0.12.0", platform = "windows"}
 
 [tool.briefcase]
 project_name = "applemusicrp"
