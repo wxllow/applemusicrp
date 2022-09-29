@@ -38,7 +38,6 @@ install_dependencies = [
     "dialite",
     "coverpy",
     "appdirs",
-    "jpath",
     "pypresence",
     "toml",
     "rich",

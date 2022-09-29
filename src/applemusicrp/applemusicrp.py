@@ -17,9 +17,7 @@ from .utils import get_cover_art_url
 
 # Get script/app path
 if hasattr(sys, "frozen") and sys.frozen in ("windows_exe", "console_exe"):
-    import jpath
-
-    path = jpath.path(os.path.abspath(sys.executable)).dirname()
+    path = os.path.dirname(os.path.abspath(sys.executable))
 else:
     path = os.path.dirname(__file__)
 
