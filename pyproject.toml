@@ -49,14 +49,6 @@ requires = [
     'setuptools'
 ]
 
-[tool.briefcase.app.applemusicrp.windows]
-requires = [
-    'psutil',
-    'pywin32',
-    'pystray',
-    'Pillow',
-]
-
 [tool.briefcase.app.applemusicrp.macOS]
 requires = [
     'rumps',
