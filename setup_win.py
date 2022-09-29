@@ -54,7 +54,7 @@ setup(
     options={"py2exe": {"compressed": 1, "dist_dir": "dist/windows/"}},
     windows=[
         {
-            "script": "launch.py",
+            "script": "AppleMusicRP.py",
             "icon_resources": [(1, "assets/icon.ico")],
         }
     ],

@@ -53,7 +53,7 @@ Make sure Discord is running and open the app!
 
 `poetry run briefcase package --adhoc-sign`
 
-Outputs to: `macOS`
+Outputs to : `macOS/AppleMusicRP-*.dmg`
 
 ### Windows
 
