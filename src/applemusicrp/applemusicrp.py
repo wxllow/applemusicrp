@@ -204,7 +204,9 @@ def rp_updater():
 
 
 def toggle_playpause_icon():
-    config.config["show_play_pause_icon"] = config.config.get("show_play_pause_icon")
+    config.config["show_play_pause_icon"] = not config.config.get(
+        "show_play_pause_icon", True
+    )
 
     config.save()
 
