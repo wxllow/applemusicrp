@@ -25,6 +25,14 @@ if ostype == "Darwin":
         int(platform.mac_ver()[0].split(".")[0]) < 10
         and int(platform.mac_ver()[0].split(".")[1]) < 15
     )
+
+    if macos_legacy:
+        dialite.fail(
+            "AppleMusicRP",
+            "macOS 10.14 and below is not supported. Please upgrade to macOS 10.15 or later or use AppleMusicRP 3.2.1 (or commit 2bd6ac8) or below.",
+        )
+        exit(1)
+
 elif ostype == "Windows":
     from PIL import Image
     from pystray import Icon, Menu, MenuItem
