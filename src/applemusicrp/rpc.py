@@ -5,8 +5,6 @@ import time
 from sys import exit
 
 import dialite
-import pypresence.exceptions
-from pypresence import Presence
 
 from .config import Config
 from .utils import get_cover_art_url, log, ostype, path
@@ -24,15 +22,6 @@ if ostype == "Darwin":
 else:
     import pythoncom
     import win32com.client
-
-
-# Initiate RPC
-client_id = config.config.get("client_id", "952320054870020146")  # Client ID
-RPC = Presence(client_id)  # Initialize the Presence client
-
-
-def connect():
-    RPC.connect()
 
 
 def get_music_info():
@@ -100,8 +89,8 @@ def get_rp(info, statuses):
     return status
 
 
-def rp_updater():
-    """Main Rich Presence loop"""
+def rp_updater(RPC):
+    """Rich Presence loop"""
     statuses = {
         "large_text": config.config.get("large_text")
         or "Using AppleMusicRP (wxllow/applemusicrp) :)",

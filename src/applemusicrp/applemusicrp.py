@@ -6,9 +6,10 @@ from sys import exit
 
 import dialite
 import pypresence.exceptions
+from pypresence import Presence
 
 from .config import Config
-from .rpc import connect, rp_updater
+from .rpc import rp_updater
 from .utils import ostype, path
 
 # Load configuration
@@ -47,7 +48,7 @@ def toggle_playpause_icon() -> None:
 
 def try_connect() -> bool:
     try:
-        connect()
+        RPC.connect()
         return True
     except (
         ConnectionRefusedError,
@@ -55,6 +56,12 @@ def try_connect() -> bool:
         pypresence.exceptions.DiscordError,
     ):
         return False
+
+
+# Initiate RPC
+RPC = Presence(
+    config.config.get("client_id", "952320054870020146")
+)  # Initialize the Presence client
 
 
 def rp_thread() -> None:
@@ -68,14 +75,13 @@ def rp_thread() -> None:
         # Try connecting until successful
         while True:
             if try_connect():
+                print("Connected to Discord")
                 break
 
-        rp_updater()
+        rp_updater(RPC)
 
 
 def main() -> None:
-    connected = False
-
     # Launch Rich Presence (RP) updating thread
     x = threading.Thread(target=rp_thread, daemon=True)
     x.start()
