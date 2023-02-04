@@ -5,6 +5,7 @@ import time
 from sys import exit
 
 import dialite
+import pypresence.exceptions
 
 from .config import Config
 from .utils import get_cover_art_url, log, ostype, path
@@ -124,6 +125,11 @@ def rp_updater(RPC):
                 RPC.update(**status)
             else:
                 RPC.clear()
+        except pypresence.exceptions.PyPresenceException as e:
+            print(
+                f"Disconnected from Discord (maybe Discord is closed or invalid client ID?). Error: {e}"
+            )
+            return
         except Exception as e:
             log.exception(e)
             err_count += 1

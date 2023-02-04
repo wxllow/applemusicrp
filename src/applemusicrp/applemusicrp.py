@@ -52,6 +52,7 @@ def try_connect() -> bool:
         return True
     except (
         ConnectionRefusedError,
+        FileNotFoundError,
         pypresence.exceptions.DiscordNotFound,
         pypresence.exceptions.DiscordError,
     ):
