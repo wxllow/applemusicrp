@@ -31,7 +31,7 @@ class Config:
             self.save()
 
     @property
-    def config(self):
+    def config(self) -> dict:
         return self._config
 
     def save(self):

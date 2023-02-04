@@ -12,7 +12,6 @@ coverpy = "^0.0.4"
 appdirs = "^1.4.4"
 pypresence = "^4.2.1"
 toml = "^0.10.2"
-rich = "^12.4.4"
 psutil = {version = "^5.9.1", platform = "windows"}
 pywin32 = {version = "^304", platform = "windows"}
 pystray = {version = "^0.19.3", platform = "windows"}
