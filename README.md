@@ -1,3 +1,5 @@
+***Unfortunately I currently do not have the time to work on this, and I personally recommend you use the [Cider](https://cider.sh/) Apple Music client as it includes Discord Rich Presence and also has a beautiful UI and tons of amazing features (and it lacks the quirky bugs this project has :P, also im not affiliated with Cider I just appreciate the teams work and I use the app myself)***
+
 <div align="center">
 
 # AppleMusicRP - Discord Rich Presence for Apple Music
