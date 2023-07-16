@@ -37,5 +37,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: AppleMusicRP-macOS.dmg
-        path: |
-          macOS/AppleMusicRP-*.dmg
+        path: "macOS/AppleMusicRP*.dmg"
