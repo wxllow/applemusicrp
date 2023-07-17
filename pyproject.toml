@@ -17,7 +17,7 @@ pywin32 = {version = "^304", platform = "windows"}
 pystray = {version = "^0.19.3", platform = "windows"}
 Pillow = {version = "^9.1.1", platform = "windows"}
 rumps = {version = "^0.3.0", platform = "darwin"}
-setuptools = "^62.6.0"
+setuptools = "^65.5.1"
 
 [tool.poetry.dev-dependencies]
 black = "^22.3.0"
