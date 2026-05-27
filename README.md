@@ -1,4 +1,4 @@
-***Unfortunately I currently do not have the time to work on this, and I personally recommend you use the [Cider](https://cider.sh/) Apple Music client as it includes Discord Rich Presence and also has a beautiful UI and tons of amazing features (and it lacks the quirky bugs this project has :P, also im not affiliated with Cider I just appreciate the teams work and I use the app myself)***
+***Note: I wrote this in HS and havent updated it in years, the code is a bit sloppy and there's probably better versions of this by now***
 
 <div align="center">
 
